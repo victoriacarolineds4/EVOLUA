@@ -7,22 +7,12 @@ import { Section } from "@/components/layout/section";
 import { createClient } from "@/lib/supabase/server";
 import { getProfileWithCompany } from "@/services/profile.service";
 import { getCompletedReportsForCompany } from "@/services/motor/motor.service";
+import { ScoreRing } from "@/components/ui/score-ring";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Relatórios — EVOLUA",
 };
-
-function overallColor(score: number) {
-  if (score >= 80) return "text-emerald-400";
-  if (score >= 65) return "text-amber-400";
-  return "text-rose-400";
-}
-function overallBg(score: number) {
-  if (score >= 80) return "bg-emerald-400/10 border-emerald-400/20";
-  if (score >= 65) return "bg-amber-400/10 border-amber-400/20";
-  return "bg-rose-400/10 border-rose-400/20";
-}
 
 export default async function RelatoriosPage() {
   const supabase = await createClient();
@@ -88,15 +78,7 @@ export default async function RelatoriosPage() {
                     <p className="text-xs text-muted-foreground">{report.role}</p>
                   </div>
                   <p className="text-sm text-muted-foreground">{report.profile}</p>
-                  <span
-                    className={cn(
-                      "rounded-full border px-3 py-1 text-xs font-semibold tabular-nums",
-                      overallBg(report.overall),
-                      overallColor(report.overall),
-                    )}
-                  >
-                    {report.overall}/100
-                  </span>
+                  <ScoreRing value={report.overall} size={36} strokeWidth={2.5} />
                   <p className="text-xs text-muted-foreground whitespace-nowrap">{report.completedAt}</p>
                   <Link
                     href={`/relatorio/${report.responseId}`}
