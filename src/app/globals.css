@@ -47,6 +47,9 @@
   --color-warning-foreground: var(--warning-foreground);
   --color-critical: var(--critical);
   --color-critical-foreground: var(--critical-foreground);
+  --color-chip-violet: var(--chip-violet);
+  --color-chip-sky: var(--chip-sky);
+  --color-chip-amber: var(--chip-amber);
   /* Sistema de 3 níveis — controles (8px) / cards (14px) / containers de destaque (20px).
      rounded-full permanece à parte, reservado para avatares e pílulas. */
   --radius-sm: 0.25rem;
@@ -61,38 +64,59 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.63 0.19 152);
-  --primary-foreground: oklch(0.145 0.02 152);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.63 0.19 152);
-  --chart-1: oklch(0.85 0.24 152);
-  --chart-2: oklch(0.75 0.18 165);
-  --chart-3: oklch(0.65 0.15 175);
-  --chart-4: oklch(0.55 0.12 185);
-  --chart-5: oklch(0.45 0.08 195);
+  /* Sistema de superfícies — off-white frio, não branco puro */
+  --background: #f7f8fa;
+  --foreground: #1b1f27;
+  --card: #ffffff;
+  --card-foreground: #1b1f27;
+  --popover: #ffffff;
+  --popover-foreground: #1b1f27;
+  --elevated: #f1f2f6;
+  --elevated-foreground: #1b1f27;
+
+  /* Verde-menta autoral — assinatura EVOLUA, uso controlado: ação primária + score */
+  --primary: #1fa98c;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f2f6;
+  --secondary-foreground: #1b1f27;
+  --muted: #f1f2f6;
+  --muted-foreground: #6b7280;
+  --accent: #e7f6f1;
+  --accent-foreground: #0f7a63;
+
+  /* Estados semânticos — independentes da cor de marca */
+  --success: #1f9d6c;
+  --success-foreground: #ffffff;
+  --warning: #c98a1f;
+  --warning-foreground: #1c1509;
+  --critical: #d14e63;
+  --critical-foreground: #ffffff;
+  --destructive: #d14e63;
+
+  /* Chips categóricos — variedade visual em ícones de métrica, sem função de marca */
+  --chip-violet: #8b7fe8;
+  --chip-sky: #4fa8e0;
+  --chip-amber: #e0a23a;
+
+  --border: #e7e9ed;
+  --input: #e7e9ed;
+  --ring: #1fa98c;
+  --chart-1: #1fa98c;
+  --chart-2: #57c2a8;
+  --chart-3: #8fdac6;
+  --chart-4: #c98a1f;
+  --chart-5: #8b7fe8;
   --radius: 0.75rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.63 0.19 152);
-  --sidebar-primary-foreground: oklch(0.145 0.02 152);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.63 0.19 152);
+
+  /* Sidebar como zona própria — tom distinto do painel principal */
+  --sidebar: #eef0f3;
+  --sidebar-foreground: #1b1f27;
+  --sidebar-primary: #1fa98c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e7f6f1;
+  --sidebar-accent-foreground: #0f7a63;
+  --sidebar-border: #e7e9ed;
+  --sidebar-ring: #1fa98c;
 }
 
 .dark {
@@ -124,6 +148,9 @@
   --critical: #d75c6d;
   --critical-foreground: #f2f4f3;
   --destructive: #d75c6d;
+  --chip-violet: #9a92f5;
+  --chip-sky: #5cb3ef;
+  --chip-amber: #e0a23a;
 
   --border: oklch(1 0 0 / 8%);
   --input: oklch(1 0 0 / 10%);
@@ -148,7 +175,7 @@
     @apply border-border outline-ring/50;
   }
   html {
-    color-scheme: dark;
+    color-scheme: light;
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;

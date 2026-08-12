@@ -5,7 +5,7 @@ import { ScoreRing } from "@/components/ui/score-ring";
 
 export function RecentResults({ results }: { results: ReportListItem[] }) {
   return (
-    <div className="rounded-2xl bg-card overflow-hidden shadow-ambient">
+    <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-ambient">
       <div className="flex items-center justify-between border-b border-border px-6 py-4">
         <div>
           <h3 className="text-sm font-semibold text-foreground">Últimos Resultados</h3>

@@ -6,7 +6,7 @@ export function WelcomeCard({ companyName }: WelcomeCardProps) {
   const greeting = companyName ? `Olá, ${companyName}` : "Bem-vindo ao EVOLUA";
 
   return (
-    <div className="rounded-2xl bg-card p-8 shadow-ambient">
+    <div className="rounded-2xl border border-border bg-card p-8 shadow-ambient">
       <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
         Dashboard
       </p>

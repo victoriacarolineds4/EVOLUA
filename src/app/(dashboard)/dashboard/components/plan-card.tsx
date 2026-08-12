@@ -19,7 +19,7 @@ export function PlanCard({ company }: PlanCardProps) {
   const percent = total > 0 ? Math.round((used / total) * 100) : 0;
 
   return (
-    <div className="rounded-2xl bg-card p-8">
+    <div className="rounded-2xl border border-border bg-card p-8">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-sm font-medium text-muted-foreground">Plano atual</p>
