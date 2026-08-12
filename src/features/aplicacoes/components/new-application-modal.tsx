@@ -81,7 +81,7 @@ export function NewApplicationModal({ availableLicenses }: NewApplicationModalPr
 
   return (
     <>
-      <Button onClick={handleOpen} className="shadow-glow-sm">
+      <Button onClick={handleOpen}>
         <Plus className="mr-1.5 size-4" />
         Nova Aplicação
       </Button>

@@ -4,24 +4,20 @@ import { useState } from "react";
 import { Copy, ExternalLink, X, Check } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { Badge, type badgeVariants } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { CloseApplicationDialog } from "@/features/aplicacoes/components/close-application-dialog";
 import type { Application } from "@/types/database.types";
+import type { VariantProps } from "class-variance-authority";
 
-const STATUS_CONFIG = {
-  draft: {
-    label: "Rascunho",
-    className: "bg-muted text-muted-foreground border-muted",
-  },
-  active: {
-    label: "Ativa",
-    className: "bg-primary/15 text-primary border-primary/30",
-  },
-  closed: {
-    label: "Encerrada",
-    className: "bg-destructive/15 text-destructive border-destructive/30",
-  },
-} as const;
+const STATUS_CONFIG: Record<
+  Application["status"],
+  { label: string; variant: VariantProps<typeof badgeVariants>["variant"] }
+> = {
+  draft: { label: "Rascunho", variant: "neutral" },
+  active: { label: "Ativa", variant: "success" },
+  closed: { label: "Encerrada", variant: "critical" },
+};
 
 interface ApplicationCardProps {
   application: Application;
@@ -59,11 +55,9 @@ export function ApplicationCard({ application, appUrl }: ApplicationCardProps) {
           <h3 className="font-semibold leading-tight text-foreground">
             {application.name}
           </h3>
-          <span
-            className={`inline-flex shrink-0 items-center rounded-full border px-2 py-0.5 text-xs font-medium ${status.className}`}
-          >
+          <Badge variant={status.variant} className="shrink-0">
             {status.label}
-          </span>
+          </Badge>
         </div>
 
         {/* Stats */}
@@ -103,7 +97,7 @@ export function ApplicationCard({ application, appUrl }: ApplicationCardProps) {
 
           <Button variant="outline" size="sm" onClick={handleCopyLink}>
             {copied ? (
-              <Check className="mr-1.5 size-3.5 text-primary" />
+              <Check className="mr-1.5 size-3.5 text-success" />
             ) : (
               <Copy className="mr-1.5 size-3.5" />
             )}

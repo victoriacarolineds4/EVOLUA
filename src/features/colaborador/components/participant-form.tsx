@@ -62,13 +62,13 @@ export function ParticipantForm({
     <div className="w-full max-w-lg space-y-8">
       {/* Branding */}
       <div className="text-center">
-        <p className="text-2xl font-semibold tracking-tight text-primary">EVOLUA</p>
+        <p className="font-heading text-2xl font-medium tracking-tight text-primary">EVOLUA</p>
       </div>
 
       {/* Form card */}
       <div className="rounded-2xl border border-border bg-card p-8 shadow-elevated">
         <div className="mb-6 space-y-1">
-          <h2 className="text-lg font-semibold text-foreground">
+          <h2 className="font-heading text-lg font-medium text-foreground">
             Antes de começar
           </h2>
           <p className="text-sm text-muted-foreground">

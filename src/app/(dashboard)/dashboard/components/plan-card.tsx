@@ -23,9 +23,9 @@ export function PlanCard({ company }: PlanCardProps) {
       <div className="flex items-start justify-between">
         <div>
           <p className="text-sm font-medium text-muted-foreground">Plano atual</p>
-          <p className="mt-1 text-xl font-semibold text-foreground">{planLabel}</p>
+          <p className="mt-1 font-heading text-xl font-medium text-foreground">{planLabel}</p>
         </div>
-        <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+        <span className="rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success">
           Ativo
         </span>
       </div>

@@ -9,7 +9,7 @@ export default function LoginPage() {
   return (
     <div className="space-y-8">
       <div className="space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight text-primary">EVOLUA</h1>
+        <h1 className="font-heading text-2xl font-medium tracking-tight text-primary">EVOLUA</h1>
         <p className="text-sm text-muted-foreground">
           Diagnóstico e desenvolvimento humano
         </p>
@@ -17,7 +17,7 @@ export default function LoginPage() {
 
       <div className="rounded-2xl border border-border bg-card p-8 shadow-elevated">
         <div className="mb-6 space-y-1">
-          <h2 className="text-lg font-semibold">Bem-vindo de volta</h2>
+          <h2 className="font-heading text-lg font-medium">Bem-vindo de volta</h2>
           <p className="text-sm text-muted-foreground">
             Acesse sua conta para continuar
           </p>

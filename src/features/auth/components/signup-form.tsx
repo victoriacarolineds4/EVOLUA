@@ -49,11 +49,11 @@ export function SignUpForm() {
   if (confirmationEmail) {
     return (
       <div className="space-y-4 text-center">
-        <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-primary/15">
-          <MailCheck className="size-7 text-primary" />
+        <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-success/15">
+          <MailCheck className="size-7 text-success" />
         </div>
         <div className="space-y-1.5">
-          <h3 className="text-base font-semibold text-foreground">
+          <h3 className="font-heading text-base font-medium text-foreground">
             Confirme seu e-mail
           </h3>
           <p className="text-sm text-muted-foreground">

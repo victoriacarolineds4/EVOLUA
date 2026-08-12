@@ -10,13 +10,14 @@ import { Container } from "@/components/layout/container";
 import { PillarCard } from "@/features/relatorio/components/pillar-card";
 import { ReportSection } from "@/features/relatorio/components/report-section";
 import { RadarChartWrapper } from "@/features/relatorio/components/radar-chart-wrapper";
+import { ScoreRing } from "@/components/ui/score-ring";
 import type { GeneratedReport } from "@/lib/motor/report-builder";
 import { cn } from "@/lib/utils";
 
 const PERIOD_STYLES: Record<string, string> = {
-  "30 dias": "bg-primary/10 text-primary border-primary/20",
-  "60 dias": "bg-violet-400/10 text-violet-400 border-violet-400/20",
-  "90 dias": "bg-sky-400/10 text-sky-400 border-sky-400/20",
+  "30 dias": "bg-primary/10 text-primary",
+  "60 dias": "bg-chip-violet/10 text-chip-violet",
+  "90 dias": "bg-chip-sky/10 text-chip-sky",
 };
 
 export function MotorReport({ report: r }: { report: GeneratedReport }) {
@@ -33,12 +34,12 @@ export function MotorReport({ report: r }: { report: GeneratedReport }) {
 
         {/* ── CABEÇALHO ── */}
         <div className="rounded-2xl border border-border bg-card p-8 space-y-6">
-          <div className="flex items-start justify-between gap-6">
+          <div className="flex flex-col items-start justify-between gap-6 sm:flex-row">
             <div className="space-y-1">
               <p className="text-xs font-medium uppercase tracking-widest text-primary">
                 Mapa de Desenvolvimento — EVOLUA
               </p>
-              <h1 className="text-3xl font-bold text-foreground">{r.collaborator.name}</h1>
+              <h1 className="font-heading text-3xl font-medium text-foreground">{r.collaborator.name}</h1>
               <p className="text-base text-muted-foreground">{r.collaborator.role}</p>
             </div>
             <div className="text-right shrink-0">
@@ -46,16 +47,13 @@ export function MotorReport({ report: r }: { report: GeneratedReport }) {
               <p className="text-sm font-medium text-foreground">{r.collaborator.completedAt}</p>
             </div>
           </div>
-          <div className="flex flex-wrap items-center gap-4 border-t border-border pt-6">
-            <span className="rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary border border-primary/20">
+          <div className="flex flex-wrap items-center gap-6 border-t border-border pt-6">
+            <span className="rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
               {r.profile.label}
             </span>
-            <div className="flex items-center gap-2 ml-auto">
+            <div className="ml-auto flex items-center gap-3">
               <span className="text-xs text-muted-foreground">Score geral</span>
-              <span className="text-4xl font-bold text-foreground tabular-nums">
-                {r.profile.overall}
-              </span>
-              <span className="text-lg text-muted-foreground">/100</span>
+              <ScoreRing value={r.profile.overall} size={64} strokeWidth={4} />
             </div>
           </div>
           <p className="text-sm leading-relaxed text-muted-foreground border-t border-border pt-4">
@@ -153,9 +151,9 @@ export function MotorReport({ report: r }: { report: GeneratedReport }) {
           subtitle="Destaques positivos e oportunidades de crescimento."
         >
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl border border-emerald-400/20 bg-emerald-400/5 p-6 space-y-4">
+            <div className="rounded-xl border border-success/20 bg-success/5 p-6 space-y-4">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="size-5 text-emerald-400" />
+                <CheckCircle2 className="size-5 text-success" />
                 <h3 className="text-sm font-semibold text-foreground">Pontos Fortes</h3>
               </div>
               <div className="space-y-4">
@@ -167,9 +165,9 @@ export function MotorReport({ report: r }: { report: GeneratedReport }) {
                 ))}
               </div>
             </div>
-            <div className="rounded-xl border border-amber-400/20 bg-amber-400/5 p-6 space-y-4">
+            <div className="rounded-xl border border-warning/20 bg-warning/5 p-6 space-y-4">
               <div className="flex items-center gap-2">
-                <AlertTriangle className="size-5 text-amber-400" />
+                <AlertTriangle className="size-5 text-warning" />
                 <h3 className="text-sm font-semibold text-foreground">Pontos de Atenção</h3>
               </div>
               <div className="space-y-4">

@@ -46,7 +46,7 @@ export function RecoverForm() {
     return (
       <div className="space-y-4 text-center">
         <div className="flex justify-center">
-          <CheckCircle2 className="size-12 text-primary" />
+          <CheckCircle2 className="size-12 text-success" />
         </div>
         <div>
           <p className="font-medium">E-mail enviado</p>
@@ -67,7 +67,7 @@ export function RecoverForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       {expired && (
-        <p className="rounded-lg bg-amber-500/10 px-3 py-2.5 text-sm text-amber-600 dark:text-amber-400">
+        <p className="rounded-lg bg-warning/10 px-3 py-2.5 text-sm text-warning">
           Esse link de recuperação expirou ou já foi usado. Solicite um novo abaixo.
         </p>
       )}
