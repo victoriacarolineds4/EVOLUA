@@ -1,7 +1,7 @@
 import { Progress } from "@/components/ui/progress";
 import type { Company } from "@/types/database.types";
 
-const PLAN_LABELS: Record<string, string> = {
+export const PLAN_LABELS: Record<string, string> = {
   starter: "Starter",
   growth: "Growth",
   enterprise: "Enterprise",
