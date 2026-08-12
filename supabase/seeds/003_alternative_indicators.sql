@@ -1,0 +1,96 @@
+-- ============================================================
+-- EVOLUA — Seed do Motor Oficial — alternative_indicators
+-- Sprint 07 — Versão 1.0
+--
+-- STATUS: AGUARDANDO MAPEAMENTO OFICIAL
+--
+-- Este seed está preparado para receber o mapeamento definitivo
+-- entre as 112 alternativas e os 35 indicadores comportamentais.
+--
+-- Quando o mapeamento estiver disponível, cada linha deve seguir
+-- exatamente o formato abaixo.
+--
+-- Idempotência: INSERT ... ON CONFLICT (alternative_id, indicator_id)
+-- DO UPDATE — re-execuções atualizam o evidence_strength sem duplicar.
+-- ============================================================
+
+-- ============================================================
+-- REFERÊNCIA DE IDs — ALTERNATIVAS
+-- Formato: 40000000-0000-0000-QQQQ-00000000000L
+--   QQQQ = número da situação (0001–0028)
+--   L    = letra da alternativa (1=A, 2=B, 3=C, 4=D)
+--
+-- Exemplos:
+--   Q01-A: 40000000-0000-0000-0001-000000000001
+--   Q01-B: 40000000-0000-0000-0001-000000000002
+--   Q01-C: 40000000-0000-0000-0001-000000000003
+--   Q01-D: 40000000-0000-0000-0001-000000000004
+--   Q28-D: 40000000-0000-0000-0028-000000000004
+-- ============================================================
+
+-- ============================================================
+-- REFERÊNCIA DE IDs — INDICADORES
+-- Formato: 20000000-0000-0000-0000-0000000000XX (XX = I01–I35)
+--
+--   I01: 20000000-0000-0000-0000-000000000001  Responsabilidade Pessoal     (Pilar 1)
+--   I02: 20000000-0000-0000-0000-000000000002  Gestão Emocional             (Pilar 1)
+--   I03: 20000000-0000-0000-0000-000000000003  Autoconfiança                (Pilar 1)
+--   I04: 20000000-0000-0000-0000-000000000004  Disciplina e Consistência    (Pilar 1)
+--   I05: 20000000-0000-0000-0000-000000000005  Clareza de Propósito         (Pilar 1)
+--   I06: 20000000-0000-0000-0000-000000000006  Clareza na Expressão         (Pilar 2)
+--   I07: 20000000-0000-0000-0000-000000000007  Escuta Ativa                 (Pilar 2)
+--   I08: 20000000-0000-0000-0000-000000000008  Assertividade                (Pilar 2)
+--   I09: 20000000-0000-0000-0000-000000000009  Feedback Construtivo         (Pilar 2)
+--   I10: 20000000-0000-0000-0000-000000000010  Comunicação Adaptada         (Pilar 2)
+--   I11: 20000000-0000-0000-0000-000000000011  Empatia                      (Pilar 3)
+--   I12: 20000000-0000-0000-0000-000000000012  Colaboração                  (Pilar 3)
+--   I13: 20000000-0000-0000-0000-000000000013  Gestão de Conflitos          (Pilar 3)
+--   I14: 20000000-0000-0000-0000-000000000014  Construção de Confiança      (Pilar 3)
+--   I15: 20000000-0000-0000-0000-000000000015  Influência Positiva          (Pilar 3)
+--   I16: 20000000-0000-0000-0000-000000000016  Planejamento e Organização   (Pilar 4)
+--   I17: 20000000-0000-0000-0000-000000000017  Foco e Priorização           (Pilar 4)
+--   I18: 20000000-0000-0000-0000-000000000018  Gestão do Tempo              (Pilar 4)
+--   I19: 20000000-0000-0000-0000-000000000019  Qualidade nas Entregas       (Pilar 4)
+--   I20: 20000000-0000-0000-0000-000000000020  Resiliência sob Pressão      (Pilar 4)
+--   I21: 20000000-0000-0000-0000-000000000021  Visão Estratégica            (Pilar 5)
+--   I22: 20000000-0000-0000-0000-000000000022  Tomada de Decisão            (Pilar 5)
+--   I23: 20000000-0000-0000-0000-000000000023  Desenvolvimento de Pessoas   (Pilar 5)
+--   I24: 20000000-0000-0000-0000-000000000024  Delegação Eficaz             (Pilar 5)
+--   I25: 20000000-0000-0000-0000-000000000025  Inspiração e Motivação       (Pilar 5)
+--   I26: 20000000-0000-0000-0000-000000000026  Mentalidade de Crescimento   (Pilar 6)
+--   I27: 20000000-0000-0000-0000-000000000027  Criatividade Prática         (Pilar 6)
+--   I28: 20000000-0000-0000-0000-000000000028  Tolerância à Ambiguidade     (Pilar 6)
+--   I29: 20000000-0000-0000-0000-000000000029  Abertura ao Feedback         (Pilar 6)
+--   I30: 20000000-0000-0000-0000-000000000030  Adaptabilidade               (Pilar 6)
+--   I31: 20000000-0000-0000-0000-000000000031  Autocrítica Construtiva      (Pilar 7)
+--   I32: 20000000-0000-0000-0000-000000000032  Busca por Aprendizado        (Pilar 7)
+--   I33: 20000000-0000-0000-0000-000000000033  Aplicação do Conhecimento    (Pilar 7)
+--   I34: 20000000-0000-0000-0000-000000000034  Compartilhamento de Conhecimento (Pilar 7)
+--   I35: 20000000-0000-0000-0000-000000000035  Visão de Futuro              (Pilar 7)
+-- ============================================================
+
+-- ============================================================
+-- FORMATO DO INSERT
+--
+-- insert into public.alternative_indicators
+--   (alternative_id, indicator_id, evidence_strength)
+-- values
+--   ('<ID_ALTERNATIVA>', '<ID_INDICADOR>', <0|1|2|3>),
+--   ...
+-- on conflict (alternative_id, indicator_id) do update set
+--   evidence_strength = excluded.evidence_strength;
+--
+-- REGRAS:
+--   • Cada alternativa pode evidenciar 2, 3 ou 4 indicadores
+--   • evidence_strength deve ser sempre explícito (0, 1, 2 ou 3)
+--   • Nunca usar texto para relacionamento — apenas IDs fixos
+--   • O seed é idempotente: re-execuções atualizam sem duplicar
+-- ============================================================
+
+-- ============================================================
+-- MAPEAMENTO OFICIAL (a preencher)
+-- ============================================================
+
+-- O mapeamento oficial será inserido aqui quando disponível.
+-- Nenhum vínculo foi gerado automaticamente.
+-- Nenhum comportamento foi deduzido ou interpretado.
