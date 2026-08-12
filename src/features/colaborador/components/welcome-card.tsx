@@ -10,14 +10,14 @@ export function WelcomeCard({ onStart }: WelcomeCardProps) {
     <div className="w-full max-w-lg space-y-8">
       {/* Branding */}
       <div className="text-center">
-        <p className="text-2xl font-semibold tracking-tight text-primary">EVOLUA</p>
+        <p className="font-heading text-2xl font-medium tracking-tight text-primary">EVOLUA</p>
       </div>
 
       {/* Main card */}
       <div className="rounded-2xl border border-border bg-card p-8 shadow-elevated">
         <div className="space-y-6">
           <div className="space-y-3">
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+            <h1 className="font-heading text-2xl font-medium tracking-tight text-foreground">
               Bem-vindo ao EVOLUA
             </h1>
             <p className="text-sm leading-relaxed text-muted-foreground">

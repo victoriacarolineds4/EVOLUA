@@ -37,7 +37,7 @@ export function Sidebar({
     >
       <div className="flex h-16 shrink-0 items-center justify-between px-4">
         {!collapsed && (
-          <span className="text-lg font-semibold tracking-tight text-sidebar-primary">
+          <span className="font-heading text-lg font-medium tracking-tight text-sidebar-primary">
             EVOLUA
           </span>
         )}
