@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { type LucideIcon, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -37,9 +38,7 @@ export function Sidebar({
     >
       <div className="flex h-16 shrink-0 items-center justify-between px-4">
         {!collapsed && (
-          <span className="font-heading text-lg font-medium tracking-tight text-sidebar-primary">
-            EVOLUA
-          </span>
+          <Image src="/logo-mark.png" alt="EVOLUA" width={1264} height={189} className="h-7 w-auto" priority />
         )}
         {onCollapsedChange && (
           <Button
