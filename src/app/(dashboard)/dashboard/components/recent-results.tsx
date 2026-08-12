@@ -1,17 +1,11 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { ReportListItem } from "@/services/motor/motor.service";
-import { cn } from "@/lib/utils";
-
-function overallColor(score: number) {
-  if (score >= 80) return "text-emerald-400";
-  if (score >= 65) return "text-amber-400";
-  return "text-rose-400";
-}
+import { ScoreRing } from "@/components/ui/score-ring";
 
 export function RecentResults({ results }: { results: ReportListItem[] }) {
   return (
-    <div className="rounded-2xl border border-border bg-card overflow-hidden">
+    <div className="rounded-2xl bg-card overflow-hidden shadow-ambient">
       <div className="flex items-center justify-between border-b border-border px-6 py-4">
         <div>
           <h3 className="text-sm font-semibold text-foreground">Últimos Resultados</h3>
@@ -45,13 +39,11 @@ export function RecentResults({ results }: { results: ReportListItem[] }) {
                 {r.completedAt}
               </p>
 
-              <span className={cn("text-lg font-bold tabular-nums shrink-0", overallColor(r.overall))}>
-                {r.overall}
-              </span>
+              <ScoreRing value={r.overall} size={40} strokeWidth={2.5} />
 
               <Link
                 href={`/relatorio/${r.responseId}`}
-                className="shrink-0 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground hover:border-primary/40 hover:text-primary transition-colors"
+                className="shrink-0 rounded-lg px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 Ver mapa
               </Link>

@@ -6,12 +6,14 @@ export function WelcomeCard({ companyName }: WelcomeCardProps) {
   const greeting = companyName ? `Olá, ${companyName}` : "Bem-vindo ao EVOLUA";
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-8">
-      <p className="text-sm font-medium text-primary">Dashboard</p>
-      <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
+    <div className="rounded-2xl bg-card p-8 shadow-ambient">
+      <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+        Dashboard
+      </p>
+      <h1 className="mt-2 font-heading text-3xl font-medium tracking-tight text-foreground">
         {greeting}
-      </h2>
-      <p className="mt-3 text-sm text-muted-foreground italic">
+      </h1>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground/80 italic">
         &ldquo;Toda pessoa pode evoluir quando recebe a direção certa.&rdquo;
       </p>
     </div>

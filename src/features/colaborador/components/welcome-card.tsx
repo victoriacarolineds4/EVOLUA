@@ -56,7 +56,7 @@ export function WelcomeCard({ onStart }: WelcomeCardProps) {
             </div>
           </div>
 
-          <Button className="w-full shadow-glow-sm" size="lg" onClick={onStart}>
+          <Button className="w-full" size="lg" onClick={onStart}>
             Iniciar minha jornada
             <ArrowRight className="ml-2 size-4" />
           </Button>
