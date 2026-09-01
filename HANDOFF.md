@@ -192,7 +192,7 @@ Perfil → Essencial em 30s → Como agir (6 blocos) → Pilares + Radar → Lei
 
 ## 8. Rotas
 **Auth:** `/login` · `/cadastro` · `/recuperar-senha`
-**Gestor (protegidas):** `/dashboard` · `/aplicacoes` · `/aplicacoes/nova` · `/aplicacoes/[id]` · `/relatorio` · `/relatorio/[responseId]` · `/meu-plano` · `/configuracoes`
+**Gestor (protegidas):** `/dashboard` · `/aplicacoes` · `/aplicacoes/[id]` · `/relatorio` · `/relatorio/[responseId]` · `/meu-plano` · `/configuracoes`
 **Colaborador (pública):** `/e/[token]` · `/e/[token]/questionario`
 Proteção em `src/middleware.ts` (`PROTECTED_PREFIXES` / `AUTH_PREFIXES`).
 
@@ -234,10 +234,13 @@ Proteção em `src/middleware.ts` (`PROTECTED_PREFIXES` / `AUTH_PREFIXES`).
 
 ## 12. Pendências reais restantes
 
+> **Atualização (2026-08 — Sprint "Telas Pendentes"):** `/meu-plano`, `/configuracoes` e `/aplicacoes/[id]` eram placeholders "Em breve" **acessíveis pela UI de verdade** (link direto na Sidebar ou botão "Abrir" em cada card de aplicação) — implementadas com dado real, sem billing/upgrade fake, sem campo inventado. `/aplicacoes/nova` era rota morta (sem nenhum link apontando pra ela — a criação real é via modal em `/aplicacoes`) e foi removida. Nenhuma dessas 4 estava listada abaixo porque não fazia parte das 9 itens originais — era lacuna descoberta depois, numa auditoria à parte.
+
 1. **Validação humana do mapeamento e dos textos de tradução** (Victoria) — usar `MAPEAMENTO_REVISAO.md`. É a única pendência das 9 desta sprint que não é código.
 2. Se/quando decidirem personalizar por gênero: ver estimativa em §9.2.
 3. SMTP customizado no Supabase (ou desativar confirmação de e-mail) para parar de depender do rate-limit do provedor padrão.
 4. ~~Rotacionar as chaves~~ — decisão tomada: **não fazer agora** (ver §11). Não sugerir de novo a menos que algo mude (vazamento real ou ida pra produção).
+5. **`NEXT_PUBLIC_APP_URL` no ambiente Preview do Vercel:** parece configurada só para Production — em qualquer branch/preview, links públicos gerados pelo app (`/aplicacoes`, `/aplicacoes/[id]`, `/dashboard`) caem no fallback `http://localhost:3000` em vez da URL real do preview. Não afeta produção (lá a env var existe), mas vale configurar também pro Preview se for comum revisar branches antes do merge.
 
 ---
 

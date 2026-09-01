@@ -4,20 +4,11 @@ import { useState } from "react";
 import { Copy, ExternalLink, X, Check } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { Badge, type badgeVariants } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { CloseApplicationDialog } from "@/features/aplicacoes/components/close-application-dialog";
+import { STATUS_CONFIG } from "@/features/aplicacoes/lib/status";
 import type { Application } from "@/types/database.types";
-import type { VariantProps } from "class-variance-authority";
-
-const STATUS_CONFIG: Record<
-  Application["status"],
-  { label: string; variant: VariantProps<typeof badgeVariants>["variant"] }
-> = {
-  draft: { label: "Rascunho", variant: "neutral" },
-  active: { label: "Ativa", variant: "success" },
-  closed: { label: "Encerrada", variant: "critical" },
-};
 
 interface ApplicationCardProps {
   application: Application;
