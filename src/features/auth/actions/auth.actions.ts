@@ -17,6 +17,12 @@ import { createClient } from "@/lib/supabase/server";
  * painel (Authentication → Providers → Email); não é ajustável por código.
  */
 function friendlyAuthError(error: { code?: string; message: string }): string {
+  // Log server-side do erro real do Supabase Auth (nunca exposto ao
+  // cliente) — visível em Vercel → Deployments → Logs. Sem isso, um erro
+  // não mapeado no switch abaixo cai no fallback genérico sem deixar
+  // nenhum rastro observável de qual foi o `code`/`message` reais.
+  console.error("[auth] Supabase Auth error:", { code: error.code, message: error.message });
+
   switch (error.code) {
     case "invalid_credentials":
       return "E-mail ou senha incorretos.";
