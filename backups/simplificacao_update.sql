@@ -1,0 +1,34 @@
+-- ============================================================
+-- EVOLUA — Simplificação de linguagem do questionário
+-- 25 linhas (21 diretas + 3 de decisão humana + 1 typo isolado)
+-- Cada UPDATE mira por id. Nenhum outro campo é tocado.
+-- ============================================================
+
+update public.alternatives set description = 'Agradeço a crítica e sugiro que o assunto seja tratado em outro momento, mais adequado, para não atrapalhar o andamento da reunião.' where id = '40000000-0000-0000-0002-000000000003';
+update public.questions set title = 'Você tem um projeto estratégico de longo prazo, sem prazo fixo, e o gestor acompanha pouco o que você está fazendo. Como você garante o avanço?' where id = '30000000-0000-0000-0000-000000000003';
+update public.alternatives set description = 'Defino metas para cada semana, reservo um horário fixo pra trabalhar no projeto e acompanho meu próprio progresso com regularidade.' where id = '40000000-0000-0000-0003-000000000001';
+update public.alternatives set description = 'Compartilho o projeto com colegas e crio encontros regulares para acompanharmos juntos e manter o foco do grupo.' where id = '40000000-0000-0000-0003-000000000004';
+update public.alternatives set title = 'Aceito e reduzo os riscos' where id = '40000000-0000-0000-0007-000000000004';
+update public.questions set title = 'Você precisa dar um feedback difícil a um colega sobre um comportamento recorrente que está afetando o clima do time. Como você age?' where id = '30000000-0000-0000-0000-000000000008';
+update public.alternatives set title = 'Peço ajuda de um mediador', description = 'Peço ao gestor para ajudar a conduzir a conversa, ficando neutro, pra garantir que a crítica seja dada da melhor forma possível.' where id = '40000000-0000-0000-0008-000000000003';
+update public.alternatives set description = 'Identifico onde posso contribuir mais, ofereço ajuda diretamente aos colegas e participo do que eles estão fazendo.' where id = '40000000-0000-0000-0009-000000000001';
+update public.alternatives set title = 'Aviso que estou disponível', description = 'Aviso ao gestor que tenho tempo livre e espero uma orientação oficial sobre onde posso ajudar.' where id = '40000000-0000-0000-0009-000000000002';
+update public.alternatives set title = 'Ouço separado e medeio junto', description = 'Converso individualmente com cada um para entender o lado de cada pessoa e depois converso com os dois juntos, de forma organizada.' where id = '40000000-0000-0000-0010-000000000001';
+update public.alternatives set title = 'Levo para o gestor' where id = '40000000-0000-0000-0010-000000000003';
+update public.questions set title = 'Um colega está passando por um momento pessoal muito difícil e o rendimento dele caiu visivelmente. Como você age?' where id = '30000000-0000-0000-0000-000000000011';
+update public.alternatives set description = 'Comunico ao gestor a situação para que ele possa dar o apoio que a empresa oferece nesses casos.' where id = '40000000-0000-0000-0011-000000000003';
+update public.alternatives set description = 'Incluo-o como observador no que já está em andamento para que ele conheça os costumes e o jeito do time de trabalhar antes de assumir iniciativas.' where id = '40000000-0000-0000-0012-000000000004';
+update public.alternatives set title = 'Alinho com quem está envolvido' where id = '40000000-0000-0000-0013-000000000003';
+update public.alternatives set title = 'Faço uma revisão com o time', description = 'Reúno o time para revisar o que aconteceu e conversamos juntos sobre o que faríamos diferente da próxima vez.' where id = '40000000-0000-0000-0015-000000000003';
+update public.alternatives set title = 'Negocio o que é possível', description = 'Explico o problema para quem pediu a entrega e negocio o que será feito ou o prazo, para conseguir manter a qualidade.' where id = '40000000-0000-0000-0016-000000000001';
+update public.alternatives set description = 'Explico o objetivo e as expectativas, combino conversas periódicas para acompanhar e deixo espaço para ele fazer com autonomia.' where id = '40000000-0000-0000-0018-000000000001';
+update public.alternatives set description = 'Dou retornos frequentes, crio com ele um plano de desenvolvimento e acompanho a evolução regularmente.' where id = '40000000-0000-0000-0019-000000000001';
+update public.alternatives set description = 'Busco entender a lógica por trás da mudança, identifico as oportunidades nela e me reposiciono antes que me peçam.' where id = '40000000-0000-0000-0021-000000000001';
+update public.questions set title = 'Você identifica um problema recorrente no processo do seu time que ninguém ainda resolveu de vez. O que você faz?' where id = '30000000-0000-0000-0000-000000000022';
+update public.alternatives set title = 'Reúno o time para pensar juntos', description = 'Levanto o problema em uma reunião de time e conduzo uma conversa em grupo pra buscarmos soluções juntos.' where id = '40000000-0000-0000-0022-000000000003';
+update public.alternatives set description = 'Esclareço os objetivos com o gestor, estruturo meu próprio entendimento do papel e começo a atuar com autonomia.' where id = '40000000-0000-0000-0023-000000000001';
+update public.alternatives set description = 'Identifico colegas mais atualizados e crio oportunidades de aprendizado através da troca e da mentoria interna.' where id = '40000000-0000-0000-0025-000000000004';
+update public.alternatives set title = 'Apresento e melhoro com o time' where id = '40000000-0000-0000-0027-000000000002';
+
+-- Confirmação: deve retornar 25
+select count(*) from (select id from public.questions where id in ('30000000-0000-0000-0000-000000000003', '30000000-0000-0000-0000-000000000008', '30000000-0000-0000-0000-000000000011', '30000000-0000-0000-0000-000000000022') union all select id from public.alternatives where id in ('40000000-0000-0000-0002-000000000003', '40000000-0000-0000-0003-000000000001', '40000000-0000-0000-0003-000000000004', '40000000-0000-0000-0007-000000000004', '40000000-0000-0000-0008-000000000003', '40000000-0000-0000-0009-000000000001', '40000000-0000-0000-0009-000000000002', '40000000-0000-0000-0010-000000000001', '40000000-0000-0000-0010-000000000003', '40000000-0000-0000-0011-000000000003', '40000000-0000-0000-0012-000000000004', '40000000-0000-0000-0013-000000000003', '40000000-0000-0000-0015-000000000003', '40000000-0000-0000-0016-000000000001', '40000000-0000-0000-0018-000000000001', '40000000-0000-0000-0019-000000000001', '40000000-0000-0000-0021-000000000001', '40000000-0000-0000-0022-000000000003', '40000000-0000-0000-0023-000000000001', '40000000-0000-0000-0025-000000000004', '40000000-0000-0000-0027-000000000002')) x;

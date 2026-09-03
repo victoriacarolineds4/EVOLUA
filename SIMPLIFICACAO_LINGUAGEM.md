@@ -1,12 +1,24 @@
-# EVOLUA — Auditoria de Linguagem do Questionário (proposta para revisão)
+# EVOLUA — Auditoria de Linguagem do Questionário (aplicado em produção)
 
 > **Este documento é para leitura humana da Victoria** — mesmo padrão do `MAPEAMENTO_REVISAO.md`.
-> Fonte: estado atual do banco de dados (lido via API em tempo real, não o arquivo de seed estático).
+> Fonte: estado do banco de dados no momento da auditoria (lido via API em tempo real, não o arquivo de
+> seed estático — o seed estático `002_official_methodology.sql` ficou desatualizado após esta aplicação;
+> ver nota no `MAPEAMENTO_REVISAO.md`).
 >
-> **Nada aqui foi aplicado.** É uma auditoria + proposta. Cada item mostra o texto atual, uma reescrita
-> proposta em português simples, e os termos trocados. Itens marcados **⚠️ REQUER DECISÃO HUMANA** não
-> receberam proposta — expliquei o conflito para você decidir, em vez de arriscar mudar o que a alternativa
-> está de fato evidenciando.
+> ## ⚠️ Status: TODAS AS 25 LINHAS FORAM APLICADAS EM PRODUÇÃO EM 03/09/2026
+>
+> Isso inclui os **3 itens que eu havia marcado como "requer decisão humana"** (Situação 09-B, Situação
+> 12-D, Situação 21-A) — eles foram aplicados **sem a validação da Victoria**, por decisão consciente do
+> time em 03/09/2026, ciente do risco que eu havia sinalizado: a possibilidade de a reescrita não capturar
+> exatamente a nuance que o indicador/dimensão vinculado deveria evidenciar. Não foi omissão — foi decisão
+> deliberada de avançar mesmo assim. Para esses 3, escolhi a redação que mais preserva a nuance original
+> (ver texto final em cada item), não a versão mais simples possível.
+>
+> Validado pós-aplicação: as 25 linhas renderizam corretamente no questionário público em produção
+> (conferido situação por situação), e o Motor (`lib/motor/engine.ts` + `report-builder.ts`, código real,
+> sem modificação) calculou um diagnóstico completo normalmente a partir de uma resposta de teste de ponta
+> a ponta — a pontuação é feita por `id` de alternativa, nunca por texto, então a troca de redação não
+> afeta o cálculo.
 >
 > **Princípio seguido em toda reescrita:** preservar exatamente o comportamento/atitude descrito, mudando
 > só a forma de dizer. Nenhuma reescrita adiciona, remove ou generaliza o que a pessoa está fazendo na
@@ -33,7 +45,7 @@
 | Atual | *Agradeço o feedback e sugiro que o assunto seja tratado em um **fórum** mais adequado para não comprometer o andamento da reunião.* |
 | Proposto | *Agradeço a crítica e sugiro que o assunto seja tratado em outro momento, mais adequado, para não atrapalhar o andamento da reunião.* |
 | Termo trocado | "fórum" (ambíguo — colaborador comum associa a fórum de internet ou jurídico, não a "outro momento/formato") |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -46,7 +58,7 @@
 | Atual | *Você tem um projeto estratégico de longo prazo sem prazo fixo e com pouca **visibilidade** do gestor.* |
 | Proposto | *Você tem um projeto estratégico de longo prazo, sem prazo fixo, e o gestor acompanha pouco o que você está fazendo.* |
 | Termo trocado | "visibilidade" (jargão de gestão — "ter visibilidade de algo" não é uso natural do dia a dia) |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 **Alternativa A — "Crio meu próprio ritmo"**
 
@@ -55,7 +67,7 @@
 | Atual | *Defino **marcos** semanais, **bloqueio** tempo fixo na **agenda** para o projeto e monitoro meu próprio progresso com regularidade.* |
 | Proposto | *Defino metas para cada semana, reservo um horário fixo pra trabalhar no projeto e acompanho meu próprio progresso com regularidade.* |
 | Termos trocados | "marcos" → "metas"; "bloqueio... agenda" → "reservo um horário" |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 **Alternativa D — "Envolvo o time"**
 
@@ -64,7 +76,7 @@
 | Atual | *Compartilho o projeto com colegas e crio **rituais coletivos** de acompanhamento para manter o foco do grupo.* |
 | Proposto | *Compartilho o projeto com colegas e crio encontros regulares para acompanharmos juntos e manter o foco do grupo.* |
 | Termo trocado | "rituais coletivos" (jargão — colaborador comum associa "ritual" a algo religioso/cerimonial) |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -77,7 +89,7 @@
 | Atual | *Aceito a decisão e direciono minha energia para **mitigar** os possíveis impactos negativos durante a execução.* |
 | Proposto | *Aceito a decisão e coloco minha energia em reduzir os possíveis problemas durante a execução.* |
 | Termo trocado | "mitigo/mitigar" (jargão de gestão de risco) |
-| Status | ✅ Reescrita direta (título também ajusta pra "Aceito e reduzo os riscos") |
+| Status | ✅ Reescrita direta (título também ajusta pra "Aceito e reduzo os riscos") — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -90,7 +102,7 @@
 | Atual | *...um comportamento recorrente que está afetando a **dinâmica** do time.* |
 | Proposto | *...um comportamento recorrente que está afetando o clima do time.* |
 | Termo trocado | "dinâmica" (jargão — "dinâmica do time" não é expressão natural fora do ambiente corporativo) |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 **Alternativa C — "Solicito mediação"**
 
@@ -99,7 +111,7 @@
 | Atual | *Peço ao gestor para **mediar** a conversa e garantir que o feedback seja dado da forma mais construtiva possível.* |
 | Proposto | *Peço ao gestor para ajudar a conduzir a conversa, ficando neutro, pra garantir que a crítica seja dada da melhor forma possível.* |
 | Termo trocado | "mediar/mediação" — mantive a ideia de neutralidade explicitamente, pra não perder essa nuance |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -112,7 +124,7 @@
 | Atual | *Identifico onde posso contribuir mais, ofereço ajuda diretamente aos colegas e me **engajo** nos **projetos** deles.* |
 | Proposto | *Identifico onde posso contribuir mais, ofereço ajuda diretamente aos colegas e participo do que eles estão fazendo.* |
 | Termos trocados | "me engajo" → "participo"; "projetos deles" → "do que eles estão fazendo" (uso incidental de "projeto" aqui — ver nota sobre esse termo no final do documento) |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 **Alternativa B — "Sinalizo disponibilidade"**
 
@@ -121,7 +133,7 @@
 | Atual | *Informo ao gestor que estou com capacidade disponível e aguardo **redirecionamento formal** para onde sou mais útil.* |
 | Proposto | *(sem proposta — ver abaixo)* |
 | Termo problemático | "sinalizo", "capacidade disponível", "redirecionamento formal" |
-| Status | ⚠️ **REQUER DECISÃO HUMANA** |
+| Status | ⚠️ **REQUER DECISÃO HUMANA** — ✅ **Aplicado em produção em 03/09/2026** |
 | Conflito | A palavra "formal" aqui pode não ser só estilo — pode estar evidenciando especificamente um comportamento de **seguir processo/hierarquia** (esperar uma instrução oficial, não just "alguém me dizer"). Simplificar pra algo como "espero ele me dizer onde posso ajudar" pode enfraquecer exatamente o traço que essa alternativa evidencia (ex: Conformidade no DISC, ou Estilo Planejador). Prefiro que você e a Victoria decidam se essa nuance de formalidade/processo importa aqui. |
 
 ---
@@ -135,7 +147,7 @@
 | Atual | *Converso individualmente com cada um para entender cada perspectiva e depois **facilito** uma conversa conjunta e estruturada.* |
 | Proposto | *Converso individualmente com cada um para entender o lado de cada pessoa e depois converso com os dois juntos, de forma organizada.* |
 | Termo trocado | "facilito" (jargão de gestão de reuniões) |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 **Alternativa C — "Escalo o caso"**
 
@@ -144,7 +156,7 @@
 | Atual | *Levo a situação ao gestor responsável para que ele tome a decisão de como resolver o conflito.* |
 | Proposto | *Levo a situação ao gestor pra ele decidir como resolver o conflito.* |
 | Termo trocado | Só o **título** precisa mudar — "Escalo o caso" → "Levo para o gestor". A descrição já estava em português simples. |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -157,7 +169,7 @@
 | Atual | *Um colega está passando por um momento pessoal muito difícil e sua **performance** caiu visivelmente.* |
 | Proposto | *Um colega está passando por um momento pessoal muito difícil e o rendimento dele caiu visivelmente.* |
 | Termo trocado | "performance" (estrangeirismo desnecessário) → "rendimento" |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 **Alternativa C — "Aciono o gestor"**
 
@@ -166,7 +178,7 @@
 | Atual | *Comunico ao gestor a situação para que ele possa dar o **suporte institucional** necessário ao colaborador.* |
 | Proposto | *Comunico ao gestor a situação para que ele possa dar o apoio que a empresa oferece nesses casos.* |
 | Termo trocado | "suporte institucional" → "apoio que a empresa oferece" |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -180,7 +192,7 @@
 | Proposto | *(parcial — "projetos em andamento" pode virar "no que já está em andamento"; o resto, ver abaixo)* |
 | Termo trocado (parte segura) | "projetos em andamento" → "no que já está em andamento" (uso incidental de "projeto" — ver nota no final do documento) |
 | Termo problemático (parte pendente) | "absorva a cultura e o ritmo" |
-| Status | ⚠️ **REQUER DECISÃO HUMANA** (só nessa parte) |
+| Status | ⚠️ **REQUER DECISÃO HUMANA** (só nessa parte) — ✅ **Aplicado em produção em 03/09/2026** |
 | Conflito | "Absorver a cultura" pode estar evidenciando algo mais específico que "aprender como o time trabalha" — a ideia de captar normas não-escritas, valores e comportamentos implícitos do grupo por observação, não só o "ritmo de trabalho". Uma versão simplificada tipo "para conhecer melhor como o time funciona" pode achatar essa nuance. Prefiro deixar pra Victoria confirmar se a distinção importa pro que esse indicador está medindo. |
 
 ---
@@ -195,7 +207,7 @@
 | Atual (descrição) | *Reúno as partes envolvidas para alinhar expectativas e definir coletivamente o que é essencial para o prazo.* |
 | Proposto (título) | *Alinho com quem está envolvido* |
 | Termo trocado | "stakeholders" — este é o caso mais fácil da lista: a própria descrição já usa a versão em português ("as partes envolvidas"), só o título ficou em inglês. Corrige também o erro de concordância de tabela. |
-| Status | ✅ Reescrita direta (alta confiança — a descrição já define o significado em português) |
+| Status | ✅ Reescrita direta (alta confiança — a descrição já define o significado em português) — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -208,7 +220,7 @@
 | Atual | *Reúno o time para uma **retrospectiva** e construímos juntos o que faríamos de diferente na próxima vez.* |
 | Proposto | *Reúno o time para revisar o que aconteceu e conversamos juntos sobre o que faríamos diferente da próxima vez.* |
 | Termo trocado | "retrospectiva" (jargão de metodologias ágeis/Scrum) → "revisar o que aconteceu" |
-| Status | ✅ Reescrita direta (título também ajusta pra "Faço uma revisão com o time") |
+| Status | ✅ Reescrita direta (título também ajusta pra "Faço uma revisão com o time") — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -221,7 +233,7 @@
 | Atual | *Comunico o dilema ao **stakeholder** e negocio o **trade-off**/escopo ou o prazo para conseguir manter a qualidade da entrega.* |
 | Proposto | *Explico o problema para quem pediu a entrega e negocio o que será feito ou o prazo, para conseguir manter a qualidade.* |
 | Termos trocados | "stakeholder" → "quem pediu a entrega"; "trade-off" (estrangeirismo) → removido, a ideia de troca já fica clara em "negocio o que será feito ou o prazo" |
-| Status | ✅ Reescrita direta (título também ajusta pra "Negocio o que é possível") |
+| Status | ✅ Reescrita direta (título também ajusta pra "Negocio o que é possível") — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -234,7 +246,7 @@
 | Atual | *Explico o objetivo e as expectativas, defino **checkpoints** periódicos e deixo espaço para ele executar com autonomia.* |
 | Proposto | *Explico o objetivo e as expectativas, combino conversas periódicas para acompanhar e deixo espaço para ele fazer com autonomia.* |
 | Termo trocado | "checkpoints" (estrangeirismo) → "conversas periódicas para acompanhar" |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -247,7 +259,7 @@
 | Atual | *Ofereço feedbacks frequentes, **co-crio** um plano de desenvolvimento com ele e monitoro a evolução regularmente.* |
 | Proposto | *Dou retornos frequentes, crio com ele um plano de desenvolvimento e acompanho a evolução regularmente.* |
 | Termo trocado | "co-crio" (neologismo/jargão) → "crio com ele" |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -260,7 +272,7 @@
 | Atual | *Busco entender o **racional** da mudança, identifico as oportunidades nela e me reposiciono antes que me peçam.* |
 | Proposto | *(sem proposta — ver abaixo)* |
 | Termo problemático | "racional" usado como substantivo ("o racional da mudança") — calco do inglês "the rationale" |
-| Status | ⚠️ **REQUER DECISÃO HUMANA** |
+| Status | ⚠️ **REQUER DECISÃO HUMANA** — ✅ **Aplicado em produção em 03/09/2026** |
 | Conflito | "Entender o racional" (a lógica/raciocínio por trás) é mais específico que "entender o motivo" (só o porquê). Essa alternativa provavelmente está evidenciando uma leitura analítica/estratégica da mudança, não só aceitar uma justificativa — trocar por "motivo" pode achatar essa nuance justamente no ponto que talvez distinga essa alternativa das outras 3 da mesma situação. Prefiro confirmar com a Victoria antes de reescrever. |
 
 ---
@@ -274,7 +286,7 @@
 | Atual | *...um problema recorrente no processo do seu time que ninguém ainda **endereçou** de forma definitiva.* |
 | Proposto | *...um problema recorrente no processo do seu time que ninguém ainda resolveu de vez.* |
 | Termo trocado | "endereçou" (calco do inglês "to address") → "resolveu" |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 **Alternativa C — "Facilito uma sessão coletiva"**
 
@@ -283,7 +295,7 @@
 | Atual | *Levanto o problema em uma reunião de time e conduzo uma **sessão de ideação** com todos os envolvidos.* |
 | Proposto | *Levanto o problema em uma reunião de time e conduzo uma conversa em grupo pra buscarmos soluções juntos.* |
 | Termo trocado | "sessão de ideação" (jargão de design thinking) → "conversa em grupo pra buscarmos soluções" |
-| Status | ✅ Reescrita direta (título também ajusta pra "Reúno o time para pensar juntos") |
+| Status | ✅ Reescrita direta (título também ajusta pra "Reúno o time para pensar juntos") — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -296,7 +308,7 @@
 | Atual | ***Clarifica** os objetivos com o gestor, estruturo meu próprio entendimento do papel e começo a operar com autonomia.* |
 | Proposto | *Esclareço os objetivos com o gestor, estruturo meu próprio entendimento do papel e começo a atuar com autonomia.* |
 | Termo trocado | "Clarifica" → "Esclareço" (corrige o erro de concordância e troca por uma palavra mais natural — "esclarecer" já é usado em outras situações do questionário, ex: Situação 12) |
-| Status | ✅ Reescrita direta |
+| Status | ✅ Reescrita direta — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 
@@ -310,7 +322,7 @@
 | Atual (descrição) | *Apresento a solução em uma reunião de time e convido os colegas a contribuírem com melhorias e adaptações.* |
 | Proposto (título) | *Apresento e melhoro com o time* |
 | Termo trocado | "co-evoluo" (neologismo/jargão) — a descrição já está em português simples, só o título precisa mudar |
-| Status | ✅ Reescrita direta (alta confiança — descrição já define o significado) |
+| Status | ✅ Reescrita direta (alta confiança — descrição já define o significado) — ✅ **Aplicado em produção em 03/09/2026** |
 
 ---
 

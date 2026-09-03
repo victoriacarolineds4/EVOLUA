@@ -6,6 +6,12 @@
 > **Status: RASCUNHO.** Todo o mapeamento abaixo foi gerado por análise do texto de cada alternativa
 > (não é um instrumento psicometricamente validado). A força de evidência é 0=ausente, 1=secundária,
 > 2=clara, 3=forte. Qualquer vínculo, força ou indicador pode ser ajustado — é só um número/linha no seed.
+>
+> **Atualização (03/09/2026):** os títulos e descrições de situações/alternativas foram ressincronizados
+> com o banco após a aplicação do `SIMPLIFICACAO_LINGUAGEM.md` (25 linhas simplificadas — ver esse
+> documento para o antes/depois de cada uma). **Os vínculos abaixo (indicadores, DISC, Tipo, Motivadores,
+> Estilo e a força de cada um) não foram tocados nem re-auditados** — continuam exatamente como estavam,
+> a validação humana desses vínculos segue pendente (item 9 do handoff original).
 
 **Estrutura:** 7 pilares · 28 situações (4 por pilar) · 112 alternativas (4 por situação) · 35 indicadores
 + 4 dimensões complementares (DISC, Tipo Psicológico, Motivadores, Estilo Operacional).
@@ -77,7 +83,7 @@
 - **Estilo Operacional:** Planejador (secundária) · Analítico (secundária)
 
 ### C) Redireciono o espaço
-*Agradeço o feedback e sugiro que o assunto seja tratado em um fórum mais adequado para não comprometer o andamento da reunião.*
+*Agradeço a crítica e sugiro que o assunto seja tratado em outro momento, mais adequado, para não atrapalhar o andamento da reunião.*
 
 - **Indicadores:** I08 Assertividade (clara) · I02 Gestão Emocional (clara) · I13 Gestão de Conflitos (clara) · I16 Planejamento e Organização (secundária)
 - **DISC:** Conformidade (clara) · Dominância (secundária)
@@ -98,10 +104,10 @@
 
 ## Situação 03 — Pilar 1 (Autogestão)
 
-**Você tem um projeto estratégico de longo prazo sem prazo fixo e com pouca visibilidade do gestor. Como você garante o avanço?**
+**Você tem um projeto estratégico de longo prazo, sem prazo fixo, e o gestor acompanha pouco o que você está fazendo. Como você garante o avanço?**
 
 ### A) Crio meu próprio ritmo
-*Defino marcos semanais, bloqueio tempo fixo na agenda para o projeto e monitoro meu próprio progresso com regularidade.*
+*Defino metas para cada semana, reservo um horário fixo pra trabalhar no projeto e acompanho meu próprio progresso com regularidade.*
 
 - **Indicadores:** I04 Disciplina e Consistência (forte) · I18 Gestão do Tempo (clara) · I16 Planejamento e Organização (clara) · I03 Autoconfiança (secundária) · I05 Clareza de Propósito (secundária)
 - **DISC:** Conformidade (clara) · Dominância (secundária)
@@ -128,7 +134,7 @@
 - **Estilo Operacional:** Planejador (forte) · Analítico (secundária)
 
 ### D) Envolvo o time
-*Compartilho o projeto com colegas e crio rituais coletivos de acompanhamento para manter o foco do grupo.*
+*Compartilho o projeto com colegas e crio encontros regulares para acompanharmos juntos e manter o foco do grupo.*
 
 - **Indicadores:** I12 Colaboração (forte) · I15 Influência Positiva (clara) · I25 Inspiração e Motivação (secundária) · I04 Disciplina e Consistência (secundária)
 - **DISC:** Influência (forte)
@@ -295,7 +301,7 @@
 - **Motivadores:** Aprendizado (secundária)
 - **Estilo Operacional:** Colaborativo (secundária) · Analítico (secundária)
 
-### D) Aceito e mitigo
+### D) Aceito e reduzo os riscos
 *Aceito a decisão e direciono minha energia para minimizar os possíveis impactos negativos durante a execução.*
 
 - **Indicadores:** I20 Resiliência sob Pressão (secundária) · I01 Responsabilidade Pessoal (secundária)
@@ -308,7 +314,7 @@
 
 ## Situação 08 — Pilar 2 (Comunicação)
 
-**Você precisa dar um feedback difícil a um colega sobre um comportamento recorrente que está afetando a dinâmica do time. Como você age?**
+**Você precisa dar um feedback difícil a um colega sobre um comportamento recorrente que está afetando o clima do time. Como você age?**
 
 ### A) Feedback direto e privado
 *Escolho um momento privado, sou específico sobre o comportamento e seu impacto, e proponho mudanças concretas.*
@@ -328,8 +334,8 @@
 - **Motivadores:** Segurança (clara)
 - **Estilo Operacional:** Colaborativo (secundária)
 
-### C) Solicito mediação
-*Peço ao gestor para mediar a conversa e garantir que o feedback seja dado da forma mais construtiva possível.*
+### C) Peço ajuda de um mediador
+*Peço ao gestor para ajudar a conduzir a conversa, ficando neutro, pra garantir que a crítica seja dada da melhor forma possível.*
 
 - **Indicadores:** I09 Feedback Construtivo (secundária) · I13 Gestão de Conflitos (secundária)
 - **DISC:** Estabilidade (clara) · Conformidade (secundária)
@@ -353,7 +359,7 @@
 **Seu time está sobrecarregado e você concluiu todas as suas entregas antes do prazo. O que você faz com o tempo disponível?**
 
 ### A) Me ofereço ativamente
-*Identifico onde posso contribuir mais, ofereço ajuda diretamente aos colegas e me engajo nos projetos deles.*
+*Identifico onde posso contribuir mais, ofereço ajuda diretamente aos colegas e participo do que eles estão fazendo.*
 
 - **Indicadores:** I12 Colaboração (forte) · I15 Influência Positiva (secundária) · I11 Empatia (secundária)
 - **DISC:** Influência (clara) · Dominância (secundária)
@@ -361,8 +367,8 @@
 - **Motivadores:** Propósito (clara)
 - **Estilo Operacional:** Colaborativo (forte)
 
-### B) Sinalizo disponibilidade
-*Informo ao gestor que estou com capacidade disponível e aguardo redirecionamento formal para onde sou mais útil.*
+### B) Aviso que estou disponível
+*Aviso ao gestor que tenho tempo livre e espero uma orientação oficial sobre onde posso ajudar.*
 
 - **Indicadores:** I12 Colaboração (secundária) · I01 Responsabilidade Pessoal (secundária)
 - **DISC:** Estabilidade (clara) · Conformidade (secundária)
@@ -394,8 +400,8 @@
 
 **Dois membros do seu time estão em conflito aberto e isso está afetando o ambiente e as entregas. Como você age?**
 
-### A) Ouço separado e medío juntos
-*Converso individualmente com cada um para entender cada perspectiva e depois facilito uma conversa conjunta e estruturada.*
+### A) Ouço separado e medeio junto
+*Converso individualmente com cada um para entender o lado de cada pessoa e depois converso com os dois juntos, de forma organizada.*
 
 - **Indicadores:** I13 Gestão de Conflitos (forte) · I11 Empatia (clara) · I07 Escuta Ativa (secundária)
 - **DISC:** Estabilidade (secundária) · Conformidade (secundária)
@@ -412,7 +418,7 @@
 - **Motivadores:** Propósito (secundária)
 - **Estilo Operacional:** Executor (clara)
 
-### C) Escalo o caso
+### C) Levo para o gestor
 *Levo a situação ao gestor responsável para que ele tome a decisão de como resolver o conflito.*
 
 - **Indicadores:** I13 Gestão de Conflitos (secundária)
@@ -434,7 +440,7 @@
 
 ## Situação 11 — Pilar 3 (Relacionamento)
 
-**Um colega está passando por um momento pessoal muito difícil e sua performance caiu visivelmente. Como você age?**
+**Um colega está passando por um momento pessoal muito difícil e o rendimento dele caiu visivelmente. Como você age?**
 
 ### A) Ofereço apoio genuíno
 *Abordo o colega com cuidado, ofereço suporte real sem pressionar por resultados e verifico o que ele precisa nesse momento.*
@@ -455,7 +461,7 @@
 - **Estilo Operacional:** Planejador (clara) · Colaborativo (secundária)
 
 ### C) Aciono o gestor
-*Comunico ao gestor a situação para que ele possa dar o suporte institucional necessário ao colaborador.*
+*Comunico ao gestor a situação para que ele possa dar o apoio que a empresa oferece nesses casos.*
 
 - **Indicadores:** I11 Empatia (secundária)
 - **DISC:** Conformidade (secundária) · Estabilidade (secundária)
@@ -506,7 +512,7 @@
 - **Estilo Operacional:** Planejador (clara)
 
 ### D) Convido à observação
-*Incluo-o como observador em projetos em andamento para que absorva a cultura e o ritmo antes de assumir iniciativas.*
+*Incluo-o como observador no que já está em andamento para que ele conheça os costumes e o jeito do time de trabalhar antes de assumir iniciativas.*
 
 - **Indicadores:** I14 Construção de Confiança (secundária) · I12 Colaboração (secundária)
 - **DISC:** Estabilidade (clara)
@@ -538,7 +544,7 @@
 - **Motivadores:** Desafios (secundária)
 - **Estilo Operacional:** Executor (forte)
 
-### C) Alinhos com stakeholders
+### C) Alinho com quem está envolvido
 *Reúno as partes envolvidas para alinhar expectativas e definir coletivamente o que é essencial para o prazo.*
 
 - **Indicadores:** I12 Colaboração (clara) · I16 Planejamento e Organização (secundária) · I15 Influência Positiva (secundária) · I21 Visão Estratégica (secundária) · I24 Delegação Eficaz (secundária)
@@ -622,8 +628,8 @@
 - **Motivadores:** Segurança (secundária)
 - **Estilo Operacional:** Executor (secundária)
 
-### C) Faço retrospecto coletivo
-*Reúno o time para uma retrospectiva e construímos juntos o que faríamos de diferente na próxima vez.*
+### C) Faço uma revisão com o time
+*Reúno o time para revisar o que aconteceu e conversamos juntos sobre o que faríamos diferente da próxima vez.*
 
 - **Indicadores:** I12 Colaboração (clara) · I31 Autocrítica Construtiva (clara) · I34 Compartilhamento de Conhecimento (clara) · I13 Gestão de Conflitos (secundária)
 - **DISC:** Influência (clara)
@@ -646,8 +652,8 @@
 
 **Você está sob pressão para entregar rápido, mas percebe que a qualidade da entrega está claramente comprometida. O que faz?**
 
-### A) Negocio o trade-off
-*Comunico o dilema ao stakeholder e negocio o escopo ou o prazo para conseguir manter a qualidade da entrega.*
+### A) Negocio o que é possível
+*Explico o problema para quem pediu a entrega e negocio o que será feito ou o prazo, para conseguir manter a qualidade.*
 
 - **Indicadores:** I19 Qualidade nas Entregas (forte) · I08 Assertividade (clara) · I17 Foco e Priorização (secundária)
 - **DISC:** Dominância (clara) · Conformidade (secundária)
@@ -731,7 +737,7 @@
 **Você precisa delegar uma tarefa estratégica para um colaborador que ainda não a realizou antes. Como você conduz esse processo?**
 
 ### A) Explico, defino e acompanho
-*Explico o objetivo e as expectativas, defino checkpoints periódicos e deixo espaço para ele executar com autonomia.*
+*Explico o objetivo e as expectativas, combino conversas periódicas para acompanhar e deixo espaço para ele fazer com autonomia.*
 
 - **Indicadores:** I24 Delegação Eficaz (forte) · I23 Desenvolvimento de Pessoas (clara) · I06 Clareza na Expressão (secundária)
 - **DISC:** Dominância (secundária) · Influência (secundária)
@@ -773,7 +779,7 @@
 **Um colaborador do seu time tem potencial claro, mas ainda não entrega de forma consistente e previsível. Como você age?**
 
 ### A) Acompanho de perto
-*Ofereço feedbacks frequentes, co-crio um plano de desenvolvimento com ele e monitoro a evolução regularmente.*
+*Dou retornos frequentes, crio com ele um plano de desenvolvimento e acompanho a evolução regularmente.*
 
 - **Indicadores:** I23 Desenvolvimento de Pessoas (forte) · I09 Feedback Construtivo (clara) · I25 Inspiração e Motivação (secundária)
 - **DISC:** Conformidade (secundária) · Influência (secundária)
@@ -857,7 +863,7 @@
 **A empresa anuncia uma reestruturação significativa que impacta diretamente a sua área e o seu papel. Como você reage?**
 
 ### A) Me adapto proativamente
-*Busco entender o racional da mudança, identifico as oportunidades nela e me reposiciono antes que me peçam.*
+*Busco entender a lógica por trás da mudança, identifico as oportunidades nela e me reposiciono antes que me peçam.*
 
 - **Indicadores:** I30 Adaptabilidade (forte) · I26 Mentalidade de Crescimento (clara) · I21 Visão Estratégica (secundária)
 - **DISC:** Dominância (clara) · Influência (secundária)
@@ -896,7 +902,7 @@
 
 ## Situação 22 — Pilar 6 (Inovação e Adaptação)
 
-**Você identifica um problema recorrente no processo do seu time que ninguém ainda endereçou de forma definitiva. O que você faz?**
+**Você identifica um problema recorrente no processo do seu time que ninguém ainda resolveu de vez. O que você faz?**
 
 ### A) Proponho uma solução
 *Mapeio o problema, desenvolvo uma proposta de solução e apresento ao gestor com dados e argumentos concretos.*
@@ -916,8 +922,8 @@
 - **Motivadores:** Desafios (secundária) · Aprendizado (secundária)
 - **Estilo Operacional:** Analítico (clara) · Executor (secundária)
 
-### C) Facilito uma sessão coletiva
-*Levanto o problema em uma reunião de time e conduzo uma sessão de ideação com todos os envolvidos.*
+### C) Reúno o time para pensar juntos
+*Levanto o problema em uma reunião de time e conduzo uma conversa em grupo pra buscarmos soluções juntos.*
 
 - **Indicadores:** I12 Colaboração (forte) · I15 Influência Positiva (clara) · I27 Criatividade Prática (secundária)
 - **DISC:** Influência (forte)
@@ -941,7 +947,7 @@
 **Você recebe uma nova responsabilidade importante sem descrição clara do que se espera de você nesse papel. Como você age?**
 
 ### A) Defino e começo
-*Clarifica os objetivos com o gestor, estruturo meu próprio entendimento do papel e começo a operar com autonomia.*
+*Esclareço os objetivos com o gestor, estruturo meu próprio entendimento do papel e começo a atuar com autonomia.*
 
 - **Indicadores:** I28 Tolerância à Ambiguidade (forte) · I03 Autoconfiança (clara) · I30 Adaptabilidade (secundária)
 - **DISC:** Dominância (clara) · Conformidade (secundária)
@@ -1052,7 +1058,7 @@
 - **Estilo Operacional:** Executor (clara) · Analítico (secundária)
 
 ### D) Aprendo com os colegas
-*Identifico colegas mais atualizados e cria oportunidades de aprendizado através da troca e da mentoria interna.*
+*Identifico colegas mais atualizados e crio oportunidades de aprendizado através da troca e da mentoria interna.*
 
 - **Indicadores:** I32 Busca por Aprendizado (clara) · I34 Compartilhamento de Conhecimento (clara) · I12 Colaboração (secundária)
 - **DISC:** Influência (clara) · Estabilidade (secundária)
@@ -1117,7 +1123,7 @@
 - **Motivadores:** Propósito (secundária) · Reconhecimento (secundária)
 - **Estilo Operacional:** Planejador (clara) · Analítico (secundária)
 
-### B) Apresento e co-evoluo
+### B) Apresento e melhoro com o time
 *Apresento a solução em uma reunião de time e convido os colegas a contribuírem com melhorias e adaptações.*
 
 - **Indicadores:** I34 Compartilhamento de Conhecimento (forte) · I12 Colaboração (clara) · I15 Influência Positiva (secundária)
