@@ -1,6 +1,6 @@
 # EVOLUA — Documento de Handoff Técnico
 > Estado do sistema para continuidade do desenvolvimento. Escrito para um dev sênior assumir sem contexto prévio.
-> Data-base: agosto/2026 — pós Sprint de Melhorias (9 itens: seed do mapeamento, licenças, encerrar aplicação, e-mail, limpeza de mocks, estimativa de gênero, hardening de RLS, rotação de chaves, revisão do mapeamento).
+> Data-base: **11/09/2026 — pós Consolidação Metodológica v2** (reconstrução completa da taxonomia oficial, auditoria comportamental das 112 alternativas, correção do mapeamento `alternative_indicators` e separação Score×Confiança no Motor). Ver §5 e §6 para o estado final.
 
 ---
 
@@ -117,19 +117,29 @@ No signup (`auth.users` INSERT), como `SECURITY DEFINER`: cria a **empresa** (no
 
 ---
 
-## 5. A Metodologia EVOLUA (congelada)
+## 5. A Metodologia EVOLUA (taxonomia oficial — confirmada e reconstruída)
 
-**7 Pilares · 5 indicadores cada = 35 indicadores · 28 situações (4 por pilar) · 4 alternativas cada = 112 alternativas.**
+> **Histórico da decisão (não reabrir sem novo motivo):** em 08/09/2026 descobriu-se que a taxonomia então implementada ("Autogestão...Desenvolvimento Contínuo") **não era oficial** — o documento fundacional trazido pela Victoria definia outros 7 pilares. A Victoria confirmou explicitamente que o documento fundacional **prevalece** sobre a decisão técnica anterior (que só validara "Autogestão..." por já estar no código, sem acesso ao documento). Entre 08/09 e 10/09/2026 a taxonomia abaixo, os 35 indicadores e os 112 vínculos alternativa→indicador foram **reconstruídos do zero** e aplicados em produção (scripts em `backups/metodologia_reconstruida/`). Em 10–11/09/2026 uma auditoria comportamental completa (`ANALISE_PROFUNDA_SINAL_COMPORTAMENTAL.md`) reavaliou os 166 vínculos gerados nessa reconstrução e uma segunda rodada de correções (`EVOLUA_METODOLOGIA_V2.md`, script `backups/metodologia_v2/12_correcao_mapeamento_v2.sql`) foi aplicada e **confirmada ao vivo em produção** (140 vínculos). O estado abaixo é o final, real, em produção.
+
+**7 Pilares · 5 indicadores cada = 35 indicadores · 28 situações · 4 alternativas cada = 112 alternativas.**
 
 | # | Pilar | Indicadores |
 |---|---|---|
-| 1 | Autogestão | I01 Responsabilidade Pessoal · I02 Gestão Emocional · I03 Autoconfiança · I04 Disciplina e Consistência · I05 Clareza de Propósito |
-| 2 | Comunicação | I06 Clareza na Expressão · I07 Escuta Ativa · I08 Assertividade · I09 Feedback Construtivo · I10 Comunicação Adaptada |
-| 3 | Relacionamento | I11 Empatia · I12 Colaboração · I13 Gestão de Conflitos · I14 Construção de Confiança · I15 Influência Positiva |
-| 4 | Orientação a Resultados | I16 Planejamento e Organização · I17 Foco e Priorização · I18 Gestão do Tempo · I19 Qualidade nas Entregas · I20 Resiliência sob Pressão |
-| 5 | Liderança | I21 Visão Estratégica · I22 Tomada de Decisão · I23 Desenvolvimento de Pessoas · I24 Delegação Eficaz · I25 Inspiração e Motivação |
-| 6 | Inovação e Adaptação | I26 Mentalidade de Crescimento · I27 Criatividade Prática · I28 Tolerância à Ambiguidade · I29 Abertura ao Feedback · I30 Adaptabilidade |
-| 7 | Desenvolvimento Contínuo | I31 Autocrítica Construtiva · I32 Busca por Aprendizado · I33 Aplicação do Conhecimento · I34 Compartilhamento de Conhecimento · I35 Visão de Futuro |
+| 1 | Organização e Rotina | I01 Gestão do Tempo · I02 Priorização · I03 Planejamento · I04 Consistência na Rotina · I05 Fechamento de Ciclos |
+| 2 | Responsabilidade | I06 Assunção de Erros · I07 Proatividade diante de Falhas · I08 Transparência sobre Atrasos · I09 Aceitação de Responsabilidade · I10 Cuidado com Impacto no Outro |
+| 3 | Aprendizagem e Mudança | I11 Abertura a Mudança · I12 Disposição para o Novo · I13 Receptividade a Feedback · I14 Autodesenvolvimento · I15 Flexibilidade Cognitiva |
+| 4 | Relacionamentos | I16 Disposição para Ajudar · I17 Acolhimento · I18 Mediação de Conflitos · I19 Tolerância à Diferença · I20 Construção de Confiança |
+| 5 | Comunicação | I21 Iniciativa de Comunicação · I22 Transparência com Liderança · I23 Pedido de Ajuda · I24 Clareza na Orientação · I25 Adaptação da Mensagem |
+| 6 | Pressão e Decisão | I26 Autonomia sob Pressão · I27 Gestão de Múltiplas Demandas · I28 Lida com Insatisfação · I29 Decisão com Informação Limitada · I30 Estabilidade sob Pressão |
+| 7 | Crescimento e Ética | I31 Busca por Crescimento · I32 Disposição para Ensinar · I33 Integridade · I34 Uso da Autonomia · I35 Compromisso com Evolução |
+
+**Classificação de cobertura dos 35 indicadores** (após a correção v2, ver `EVOLUA_METODOLOGIA_V2.md` §6 para a lista completa por indicador):
+- **Grupo A — bem mensurado** (≥3 situações distintas genuínas): 14 indicadores (40%) — I02, I03, I07, I09, I12, I14, I16, I21, I23, I24, I25, I27, I30, I33.
+- **Grupo B — parcial, aproveitável** (2 situações): 7 indicadores (20%).
+- **Grupo C — cobertura insuficiente, não estrutural** (0-1 situação; corrigível em tese com novas situações, fora do escopo desta consolidação): 12 indicadores (34%), incluindo **I04 Consistência na Rotina** (0 situações genuínas).
+- **Grupo D — estruturalmente difícil** (a própria definição exige observação longitudinal, não uma escolha pontual): **I20 Construção de Confiança** e **I35 Compromisso com Evolução**. Recomendação registrada (não implementada): tratar como "acompanhamento requerido" no relatório em vez de score numérico.
+
+⚠️ **Este documento (`REALINHAMENTO_METODOLOGIA_OFICIAL.md`) e outros dois na raiz (`INDICADORES_E_MAPEAMENTO_NOVO.md`, `REMAPEAMENTO_INDICADORES_VIAVEIS.md`) são material de trabalho da reconstrução de 08–10/09/2026** — úteis como histórico de como se chegou até aqui, mas **`EVOLUA_METODOLOGIA_V2.md` é a versão final e vigente**; em caso de conflito, ele prevalece.
 
 **Dimensões complementares** (extraídas das MESMAS respostas, não são novo questionário):
 - **DISC** (como age): Dominância, Influência, Estabilidade, Conformidade
@@ -155,19 +165,26 @@ Determinístico, **sem IA** (a IA, se usada, só montaria texto — nunca interp
 - **`lib/motor/report-builder.ts`** — `buildReport(diagnosis, colaborador): GeneratedReport` — monta o relatório "ação primeiro".
 - **`services/motor/motor.service.ts`** — loader (Supabase→Motor): `loadMotorMethodology`, `computeDiagnosisForResponse`, `getReportForResponse`, `getCompletedReportsForCompany`. Tipado com `SupabaseClient` real (sem `any` — passa no lint estrito do `next build`).
 
-### Modelo de pontuação
-- **Indicador (0–100)** = evidência mostrada ÷ evidência máxima possível × 100. Comparável entre pessoas.
-- **Pilar** = média dos seus indicadores.
-- **Dimensões** = ranking por evidência + participação %; predominante só é afirmado com ≥3 situações (senão "tendência").
+### Modelo de pontuação (v2 — score separado de confiança)
+- **Indicador (0–100)** = evidência mostrada ÷ evidência máxima possível × 100 — fórmula **não mudou** na v2. O que mudou é que cada indicador agora também carrega `confidence: "insuficiente"|"baixa"|"moderada"|"alta"`, derivado de `evidenceCount` (nº de situações **distintas** que geraram evidência — não nº de alternativas vinculadas):
+  - `evidenceCount=0` → **insuficiente** → `hasScore=false`, o indicador não deve ser exibido como número (relatório mostra "dados insuficientes").
+  - `1` → baixa · `2` → moderada · `≥3` (piso `MIN_EVIDENCE_SITUATIONS`) → alta.
+- **Pilar** = média **só dos indicadores com `hasScore=true`** (os sem evidência nenhuma são excluídos do cálculo, não zerados — essa é a mudança de fórmula da v2, motivada por um caso real: um pilar cuja média "ingênua" incluindo indicadores sem dado dava 18, e recalculada só com quem tinha evidência real dava 45, mesmo score bruto). Pilar carrega `confidence` (a mais fraca entre os indicadores considerados) e `indicatorsWithScore` (quantos dos 5 entraram na conta). Se nenhum dos 5 tiver evidência, o pilar mostra "dados insuficientes".
+- **Geral (`overall`)** = média só dos pilares com `hasScore=true`. **Correção de bug nesta v2:** `overallLevel` usava `pillars[0].level` (nível do primeiro pilar da lista, não do score geral) — agora usa `scoreToLevel(overall)` corretamente.
+- **Dimensões** (DISC/Tipo/Motivadores/Estilo) = ranking por evidência + participação %; predominante só é afirmado com ≥3 situações (senão "tendência"). Não tocadas pela v2.
+- **⚠️ Por que `evidenceCount` já é "nº de situações" e não "nº de alternativas":** cada situação só permite escolher 1 de 4 alternativas — então um indicador cujos vínculos genuínos estão todos dentro de UMA situação nunca ultrapassa `evidenceCount=1`, mesmo que essa situação tenha 4 alternativas linkadas a ele. Isso é intencional e foi a causa raiz de boa parte da baixa cobertura encontrada na auditoria (ver §5).
+
+Arquivos alterados nesta v2: `lib/motor/types.ts` (tipo `Confidence`, campos novos em `IndicatorScore`/`PillarScore`), `lib/motor/scoring.ts` (`evidenceCountToConfidence`, `weakestConfidence`), `lib/motor/engine.ts` (cálculo), `lib/motor/report-builder.ts` (`strengths`/`attentionPoints` carregam `confidence`; bug fix do `overallLevel`), `features/relatorio/components/pillar-card.tsx` e `motor-report.tsx` (UI mostra "dados insuficientes" / ressalvas de confiança). Commit `2079560`, deployado e **verificado com relatório real via UI** (ver §5-histórico e `EVOLUA_METODOLOGIA_V2.md`).
 
 ### Estrutura do relatório "ação primeiro" (`GeneratedReport`)
-Perfil → Essencial em 30s → Como agir (6 blocos) → Pilares + Radar → Leituras Complementares → Pontos Fortes/Atenção → Plano 30/60/90.
+Perfil → Essencial em 30s → Como agir (6 blocos) → Pilares (com confiança) + Radar → Padrões mais claros (só indicadores `confidence="alta"`) → Leituras Complementares → Pontos Fortes/Atenção (com ressalva de confiança) → Plano 30/60/90.
 
-### O mapeamento das 112 alternativas — agora VERSIONADO, ainda RASCUNHO
-- **Seed:** `supabase/seeds/005_official_mapping.sql` (941 vínculos: 316 indicadores + 625 dimensões). Gerado a partir do banco e **verificado byte-a-byte** — computar o diagnóstico a partir só do arquivo `.sql` dá exatamente o mesmo resultado que a partir do banco ao vivo.
-- **Revisão humana:** `MAPEAMENTO_REVISAO.md` na raiz — as 28 situações com as 4 alternativas de cada e todos os vínculos (indicadores + DISC + Tipo + Motivadores + Estilo, com a força em português), para a Victoria revisar sem precisar mexer no banco.
-- Continua **rascunho gerado por análise do texto de cada alternativa** — não é instrumento validado psicometricamente. Discrimina perfis corretamente nos testes (2 perfis sintéticos diferentes → scores e dimensões claramente distintos).
-- **Cobertura:** todo indicador tem ≥3 situações que o evidenciam (os 4 mais magros — I10, I24, I27, I34 — foram reforçados). I16 Planejamento é o mais coberto (17 situações).
+### O mapeamento das 112 alternativas — reconstruído + corrigido, versionado
+- **Estado em produção:** tabela `alternative_indicators` com **140 vínculos**, confirmados ao vivo (não só por arquivo) em 11/09/2026.
+- **Histórico:** seed antigo "941 vínculos" (`005_official_mapping.sql`) e taxonomia antiga — **obsoletos, não usar**. Reconstrução de 08–10/09/2026 (`backups/metodologia_reconstruida/`) aplicou a taxonomia oficial com 166 vínculos iniciais. Auditoria comportamental de 10–11/09/2026 (`ANALISE_PROFUNDA_SINAL_COMPORTAMENTAL.md`) reavaliou cada um dos 166 pedindo "que comportamento específico justifica este vínculo?" — resultado: 30 remoções, 11 reclassificações, 2 upgrades de força, 4 adições → 140 vínculos finais (`backups/metodologia_v2/12_correcao_mapeamento_v2.sql`, já aplicado).
+- **Não é mais rascunho gerado só por proximidade temática** — cada vínculo remanescente tem uma justificativa comportamental defensável registrada na auditoria. Ainda não é instrumento validado psicometricamente (isso exigiria dados reais de uso ao longo do tempo).
+- **Cobertura real (não nominal):** só 14 de 35 indicadores (40%, Grupo A) têm evidência genuína em ≥3 situações distintas — ver classificação completa em §5. Os outros 21 têm cobertura parcial ou insuficiente; isso é **esperado e documentado**, não um bug — o motor agora comunica essa diferença via `confidence` em vez de disfarçar como score baixo.
+- As 4 camadas complementares (DISC/Tipo/Motivador/Estilo — tabelas `alternative_disc` etc., 166 vínculos: 40+17+11+46) **não foram tocadas** pela correção v2 (só `alternative_indicators` mudou) e continuam validadas pelo teste de 3 personas reais anterior a esta consolidação.
 
 ---
 
@@ -220,6 +237,8 @@ Proteção em `src/middleware.ts` (`PROTECTED_PREFIXES` / `AUTH_PREFIXES`).
 7. **`.rpc()` sem generic `Database`:** o client Supabase sem tipo `Database` explícito infere `.rpc(...)` como `{}`, não `any` — precisa de cast explícito (`as {...}`) pros campos, diferente de `.from(...)` que infere `any`.
 8. **Recharts/radar:** client component via wrapper `dynamic(..., { ssr: false })` (nunca `ssr:false` direto em Server Component no Next 15). Ver `radar-chart-wrapper.tsx`.
 9. **`npm run build` com dev server ativo simultaneamente:** os dois escrevem no mesmo `.next/` e corrompem o cache (`Cannot find module './XXX.js'`). Rodar build de produção com o dev server **parado**, ou limpar `.next/` e reiniciar se acontecer.
+10. **Verificar telas de gestor (`/relatorio/[id]` etc.) sem senha:** a Victoria não compartilha senha em campo de UI. Técnica usada nesta sessão: criar conta descartável via API (`POST /auth/v1/signup` com `data:{full_name, company_name}` — o trigger `handle_new_user` já cria empresa+profile), pegar o `access_token` retornado (não precisa de confirmação de e-mail se "Confirm email" estiver off) e montar o cookie `sb-<project-ref>-auth-token` = `"base64-" + base64(JSON.stringify({access_token, token_type, expires_in, expires_at, refresh_token, user}))`, setado via `document.cookie` no browser. Funciona para navegar autenticado sem nunca digitar senha em campo algum. Sempre limpar os dados de teste + apagar o usuário em Authentication → Users depois.
+11. **Editar `lib/motor/*` sem commitar+pushar antes de testar em produção:** já aconteceu duas vezes nesta sessão — implementar mudança local, testar via UI real, e o resultado bater com a fórmula ANTIGA porque o deploy nunca recebeu o código novo. Sempre `git status` antes de testar algo "ao vivo"; se há mudança em `src/` não commitada, commitar+pushar e aguardar o deploy (~50-60s) antes de confiar no que a UI mostra.
 
 ---
 
@@ -236,15 +255,26 @@ Proteção em `src/middleware.ts` (`PROTECTED_PREFIXES` / `AUTH_PREFIXES`).
 
 > **Atualização (2026-08 — Sprint "Telas Pendentes"):** `/meu-plano`, `/configuracoes` e `/aplicacoes/[id]` eram placeholders "Em breve" **acessíveis pela UI de verdade** (link direto na Sidebar ou botão "Abrir" em cada card de aplicação) — implementadas com dado real, sem billing/upgrade fake, sem campo inventado. `/aplicacoes/nova` era rota morta (sem nenhum link apontando pra ela — a criação real é via modal em `/aplicacoes`) e foi removida. Nenhuma dessas 4 estava listada abaixo porque não fazia parte das 9 itens originais — era lacuna descoberta depois, numa auditoria à parte.
 
-1. **Validação humana do mapeamento e dos textos de tradução** (Victoria) — usar `MAPEAMENTO_REVISAO.md`. É a única pendência das 9 desta sprint que não é código.
-2. Se/quando decidirem personalizar por gênero: ver estimativa em §9.2.
-3. SMTP customizado no Supabase (ou desativar confirmação de e-mail) para parar de depender do rate-limit do provedor padrão.
-4. ~~Rotacionar as chaves~~ — decisão tomada: **não fazer agora** (ver §11). Não sugerir de novo a menos que algo mude (vazamento real ou ida pra produção).
-5. **`NEXT_PUBLIC_APP_URL` no ambiente Preview do Vercel:** parece configurada só para Production — em qualquer branch/preview, links públicos gerados pelo app (`/aplicacoes`, `/aplicacoes/[id]`, `/dashboard`) caem no fallback `http://localhost:3000` em vez da URL real do preview. Não afeta produção (lá a env var existe), mas vale configurar também pro Preview se for comum revisar branches antes do merge.
+### Pendências da Consolidação v2 (11/09/2026 — as mais recentes/urgentes)
+
+1. **Rodar `backups/qa_cleanup_teste_mapeamento_v2.sql`** — limpa a empresa/aplicação/resposta de teste ("Rafael Teste Mapeamento") usada para verificar o relatório real com o motor corrigido em produção. Script pronto, ainda não confirmado como executado.
+2. **Apagar 1 usuário de teste** em Authentication → Users: `gestor.teste.mapeamentov2.20260911@evolua-qa.local` (o outro usuário de verificação do mapeamento já foi apagado pela Victoria).
+3. **I20/I35 — apresentação especial no relatório** (não implementada): tratar como "acompanhamento requerido" em vez de score numérico, já que são estruturalmente não-mensuráveis por uma aplicação pontual (Grupo D, §5). Mudança de UI, precisa de validação visual antes de entrar — ver `EVOLUA_METODOLOGIA_V2.md` §7 e §11.
+4. **Redesenho de situações para os 12 indicadores do Grupo C** (cobertura insuficiente, mas não estrutural) — decisão de produto em aberto, fora do escopo da v2 (que preservou as 28 situações atuais).
+5. **Arquivos ainda não commitados desta sessão:** `MAPEAMENTO_REVISAO.md` e `SIMPLIFICACAO_LINGUAGEM.md` (notas de trabalho de tarefas anteriores) e `src/lib/motor/translation.ts` (adições de `MOTIVATOR_GUIDANCE` para DEV/CNF/TQV/OUT) — flagados, não commitados ainda, aguardando decisão de quando entram.
+
+### Pendências anteriores (ainda válidas)
+
+6. Se/quando decidirem personalizar por gênero: ver estimativa em §9.2.
+7. SMTP customizado no Supabase (ou desativar confirmação de e-mail) para parar de depender do rate-limit do provedor padrão.
+8. ~~Rotacionar as chaves~~ — decisão tomada: **não fazer agora** (ver §11). Não sugerir de novo a menos que algo mude (vazamento real ou ida pra produção).
+9. **`NEXT_PUBLIC_APP_URL` no ambiente Preview do Vercel:** parece configurada só para Production — em qualquer branch/preview, links públicos gerados pelo app (`/aplicacoes`, `/aplicacoes/[id]`, `/dashboard`) caem no fallback `http://localhost:3000` em vez da URL real do preview. Não afeta produção (lá a env var existe), mas vale configurar também pro Preview se for comum revisar branches antes do merge.
 
 ---
 
 ## 13. Como um novo dev deve pensar
-- A base (auth, questionário, banco, relatório, RLS) está **sólida, real e testada em profundidade** — inclusive isolamento entre empresas e resistência a bypass da API. O trabalho de maior valor agora é **metodológico** (validar/afinar o mapeamento e os textos com a Victoria), não engenharia.
+- A base (auth, questionário, banco, relatório, RLS) está **sólida, real e testada em profundidade** — inclusive isolamento entre empresas e resistência a bypass da API. A taxonomia/mapeamento agora também está em estado sólido (v2, §5–§6) depois de duas rodadas de reconstrução e auditoria. O trabalho de maior valor agora é: (a) decidir o que fazer com os indicadores Grupo C/D (§5, §12), (b) camadas complementares DISC/Tipo/Motivador/Estilo (já implementadas, validar mais a fundo se necessário), (c) pendências pontuais de UX/infra listadas em §12 — não é mais reconstrução metodológica do zero.
 - Respeitar: linguagem "ação primeiro"; Base UI (não Radix); IDs fixos da metodologia; sem expor ID na URL do colaborador; a IA nunca interpreta respostas — só o Motor determinístico calcula; toda escrita anônima passa por função `SECURITY DEFINER`, nunca INSERT/UPDATE direto exposto sem validação de negócio no próprio banco.
+- **Score ≠ Confiança (v2):** nunca tratar um indicador/pilar com `confidence` abaixo de "alta" como sinal confiável de comportamento fraco — é isso que o motor e o relatório agora existem para evitar. Se for alterar a fórmula de agregação de novo, documentar o motivo e testar com casos reais antes (ver `EVOLUA_METODOLOGIA_V2.md` para o padrão de teste usado).
 - Ao mexer em RLS: sempre testar com `service_role` direto (não confiar no HTTP status da tentativa) e sempre checar se há FK apontando para a tabela que você está restringindo.
+- Ao mexer em `lib/motor/*`: commitar e pushar antes de testar em produção — ver gotcha §10.11.
