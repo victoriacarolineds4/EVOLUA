@@ -42,7 +42,7 @@ export function WelcomeCard({ onStart }: WelcomeCardProps) {
               </div>
               <p className="text-sm text-foreground">
                 Tempo aproximado:{" "}
-                <span className="font-medium">10 minutos</span>
+                <span className="font-medium">15 minutos</span>
               </p>
             </div>
             <div className="flex items-center gap-3">
