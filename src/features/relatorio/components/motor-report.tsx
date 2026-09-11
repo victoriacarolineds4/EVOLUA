@@ -12,6 +12,7 @@ import { ReportSection } from "@/features/relatorio/components/report-section";
 import { RadarChartWrapper } from "@/features/relatorio/components/radar-chart-wrapper";
 import { ScoreRing } from "@/components/ui/score-ring";
 import type { GeneratedReport } from "@/lib/motor/report-builder";
+import { LEVEL_LABELS } from "@/lib/motor/scoring";
 import { cn } from "@/lib/utils";
 
 const PERIOD_STYLES: Record<string, string> = {
@@ -21,6 +22,11 @@ const PERIOD_STYLES: Record<string, string> = {
 };
 
 export function MotorReport({ report: r }: { report: GeneratedReport }) {
+  const confirmedIndicators = r.pillars
+    .flatMap((p) => p.indicators)
+    .filter((ind) => ind.sufficient)
+    .sort((a, b) => b.score - a.score);
+
   return (
     <Container>
       <div className="py-8 space-y-12">
@@ -118,6 +124,37 @@ export function MotorReport({ report: r }: { report: GeneratedReport }) {
         <ReportSection title="Radar Comportamental" subtitle="Distribuição visual dos scores por pilar.">
           <div className="rounded-xl border border-border bg-card p-8">
             <RadarChartWrapper pillars={r.pillars} />
+          </div>
+        </ReportSection>
+
+        {/* ── PADRÕES MAIS CLAROS ── */}
+        <ReportSection
+          title="Padrões mais claros identificados nesta avaliação"
+          subtitle="Traços que se confirmaram em situações diferentes — não é uma lista completa, e não precisa ser."
+        >
+          <div className="rounded-xl border border-border bg-card p-6 space-y-5">
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Um traço só aparece aqui quando se repete em pelo menos três situações diferentes. É
+              assim que garantimos que o que está abaixo é consistente — não coincidência.
+            </p>
+            {confirmedIndicators.length > 0 ? (
+              <div className="flex flex-wrap gap-3">
+                {confirmedIndicators.map((ind) => (
+                  <div
+                    key={ind.code}
+                    className="rounded-lg border border-primary/20 bg-primary/[0.04] px-4 py-3"
+                  >
+                    <p className="text-sm font-semibold text-foreground">{ind.name}</p>
+                    <p className="mt-0.5 text-xs text-primary">{LEVEL_LABELS[ind.level]}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm leading-relaxed text-foreground/90 border-t border-dashed border-border pt-4">
+                Nenhum traço se repetiu o suficiente nesta avaliação para aparecer aqui com
+                segurança. Os pilares acima já mostram o essencial desse perfil.
+              </p>
+            )}
           </div>
         </ReportSection>
 
