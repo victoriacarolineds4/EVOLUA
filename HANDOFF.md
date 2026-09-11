@@ -1,6 +1,6 @@
 # EVOLUA — Documento de Handoff Técnico
 > Estado do sistema para continuidade do desenvolvimento. Escrito para um dev sênior assumir sem contexto prévio.
-> Data-base: **11/09/2026 — pós Consolidação Metodológica v2** (reconstrução completa da taxonomia oficial, auditoria comportamental das 112 alternativas, correção do mapeamento `alternative_indicators` e separação Score×Confiança no Motor). Ver §5 e §6 para o estado final.
+> Data-base: **11/09/2026 — pós Auditoria de Prontidão v2.0 + correções P1/P2** (Consolidação Metodológica v2 + auditoria de segurança/estado/motor/relatório + as 2 correções que ela levantou, ambas aplicadas e verificadas em produção). Ver §5/§6 para a metodologia, §14 para o veredito de prontidão.
 
 ---
 
@@ -94,7 +94,7 @@ Migrations `001`→`013`. Rodar tudo de uma vez: colar `supabase/EVOLUA_FULL_SET
 | `get_application_by_token(p_token text)` | Lê 1 aplicação pelo token (nunca lista todas) |
 | `get_application_by_id(p_id uuid)` | Idem, por id |
 | `get_response_by_id(p_id uuid)` | Lê 1 resposta pelo id (o segredo do cookie `evolua_rid`) |
-| `update_response_progress(p_id, p_progress, p_current_question, p_status?, p_completed_at?)` | Atualiza só a própria resposta |
+| `update_response_progress(p_id, p_progress, p_current_question, p_status?, p_completed_at?)` | Atualiza só a própria resposta. **Migration 014 (11/09/2026):** agora valida estado — rejeita qualquer update numa resposta já `completed` (imutável), valida `progress`/`current_question` contra o total real de questões, e só permite a transição para `completed` se todas as respostas existirem em `answers`. Antes disso a função aceitava forjar `completed` sem nenhuma resposta, `progress` negativo e reverter `completed→started` — achado e corrigido na Auditoria de Prontidão v2.0 (ver §14). |
 | `create_response(p_application_id, p_name, p_role)` | Cria a resposta, validando aplicação ativa/com licença por dentro |
 | `save_answer(p_response_id, p_question_id, p_alternative_id)` | Salva 1 resposta, validando resposta em andamento + alternativa pertence à questão; idempotente (`ON CONFLICT DO NOTHING`) |
 | `application_accepts_responses(p_application_id)` / `answer_is_valid_for_insert(...)` | Helpers usados dentro do `WITH CHECK` das policies de INSERT |
@@ -176,6 +176,8 @@ Determinístico, **sem IA** (a IA, se usada, só montaria texto — nunca interp
 
 Arquivos alterados nesta v2: `lib/motor/types.ts` (tipo `Confidence`, campos novos em `IndicatorScore`/`PillarScore`), `lib/motor/scoring.ts` (`evidenceCountToConfidence`, `weakestConfidence`), `lib/motor/engine.ts` (cálculo), `lib/motor/report-builder.ts` (`strengths`/`attentionPoints` carregam `confidence`; bug fix do `overallLevel`), `features/relatorio/components/pillar-card.tsx` e `motor-report.tsx` (UI mostra "dados insuficientes" / ressalvas de confiança). Commit `2079560`, deployado e **verificado com relatório real via UI** (ver §5-histórico e `EVOLUA_METODOLOGIA_V2.md`).
 
+**Correção adicional (11/09/2026, commit `69c2f47`, achado na Auditoria de Prontidão v2.0 — ver §14):** o resumo do topo do relatório (`profile.summary`) e o badge de perfil (`profile.label`) usavam DISC/Tipo/Motivador/Estilo como fato assertivo mesmo quando a mesma dimensão aparecia como "tendência" (baixa confiança) mais abaixo, na seção Leituras Complementares — inconsistência real dentro da mesma tela. Agora `buildReport` monta o resumo **clausula por clausula**, cada uma checando o `confident`/`sufficient` da sua própria dimensão (`disc.confident`, `tipo.confident`, `d.motivators.sufficient`, `est.confident`) e trocando verbos assertivos ("tem", "pensa", "se move por") por hedged ("aparenta ter", "tende a pensar", "pode se mover por... ainda com poucas evidências") quando a confiança é baixa — mesmo padrão já usado em "Pontos de Atenção". `profile.labelConfident` (= `disc.confident`) controla um selo "tendência" no badge, igual ao das Leituras Complementares. **Verificado com relatório real via UI**: um perfil com DISC/Tipo confiantes mas Motivador não-confiante gerou o resumo corretamente misto — só a cláusula do motivador ficou hedged.
+
 ### Estrutura do relatório "ação primeiro" (`GeneratedReport`)
 Perfil → Essencial em 30s → Como agir (6 blocos) → Pilares (com confiança) + Radar → Padrões mais claros (só indicadores `confidence="alta"`) → Leituras Complementares → Pontos Fortes/Atenção (com ressalva de confiança) → Plano 30/60/90.
 
@@ -255,20 +257,26 @@ Proteção em `src/middleware.ts` (`PROTECTED_PREFIXES` / `AUTH_PREFIXES`).
 
 > **Atualização (2026-08 — Sprint "Telas Pendentes"):** `/meu-plano`, `/configuracoes` e `/aplicacoes/[id]` eram placeholders "Em breve" **acessíveis pela UI de verdade** (link direto na Sidebar ou botão "Abrir" em cada card de aplicação) — implementadas com dado real, sem billing/upgrade fake, sem campo inventado. `/aplicacoes/nova` era rota morta (sem nenhum link apontando pra ela — a criação real é via modal em `/aplicacoes`) e foi removida. Nenhuma dessas 4 estava listada abaixo porque não fazia parte das 9 itens originais — era lacuna descoberta depois, numa auditoria à parte.
 
-### Pendências da Consolidação v2 (11/09/2026 — as mais recentes/urgentes)
+### Resolvidas na Auditoria de Prontidão v2.0 (11/09/2026 — ver §14)
 
-1. **Rodar `backups/qa_cleanup_teste_mapeamento_v2.sql`** — limpa a empresa/aplicação/resposta de teste ("Rafael Teste Mapeamento") usada para verificar o relatório real com o motor corrigido em produção. Script pronto, ainda não confirmado como executado.
-2. **Apagar 1 usuário de teste** em Authentication → Users: `gestor.teste.mapeamentov2.20260911@evolua-qa.local` (o outro usuário de verificação do mapeamento já foi apagado pela Victoria).
-3. **I20/I35 — apresentação especial no relatório** (não implementada): tratar como "acompanhamento requerido" em vez de score numérico, já que são estruturalmente não-mensuráveis por uma aplicação pontual (Grupo D, §5). Mudança de UI, precisa de validação visual antes de entrar — ver `EVOLUA_METODOLOGIA_V2.md` §7 e §11.
-4. **Redesenho de situações para os 12 indicadores do Grupo C** (cobertura insuficiente, mas não estrutural) — decisão de produto em aberto, fora do escopo da v2 (que preservou as 28 situações atuais).
-5. **Arquivos ainda não commitados desta sessão:** `MAPEAMENTO_REVISAO.md` e `SIMPLIFICACAO_LINGUAGEM.md` (notas de trabalho de tarefas anteriores) e `src/lib/motor/translation.ts` (adições de `MOTIVATOR_GUIDANCE` para DEV/CNF/TQV/OUT) — flagados, não commitados ainda, aguardando decisão de quando entram.
+- ~~Rodar `qa_cleanup_teste_mapeamento_v2.sql`~~ — confirmado executado pela Victoria.
+- ~~Apagar usuário `gestor.teste.mapeamentov2...`~~ — confirmado apagado.
+- ~~`update_response_progress` sem validação de estado~~ — corrigido (migration 014, commit `69c2f47`), verificado com os 3 testes de reprodução agora retornando erro.
+- ~~Resumo do relatório não refletia baixa confiança de DISC/Tipo/Motivador/Estilo~~ — corrigido (commit `69c2f47`), verificado com relatório real.
+
+### Pendências ainda abertas
+
+1. **I20/I35 — apresentação especial no relatório** (não implementada): tratar como "acompanhamento requerido" em vez de score numérico, já que são estruturalmente não-mensuráveis por uma aplicação pontual (Grupo D, §5). Mudança de UI, precisa de validação visual antes de entrar — ver `EVOLUA_METODOLOGIA_V2.md` §7 e §11.
+2. **Redesenho de situações para os 12 indicadores do Grupo C** (cobertura insuficiente, mas não estrutural) — decisão de produto em aberto, fora do escopo da v2 (que preservou as 28 situações atuais).
+3. **Arquivos ainda não commitados desta sessão:** `MAPEAMENTO_REVISAO.md` e `SIMPLIFICACAO_LINGUAGEM.md` (notas de trabalho de tarefas anteriores) e `src/lib/motor/translation.ts` (adições de `MOTIVATOR_GUIDANCE` para DEV/CNF/TQV/OUT) — flagados, não commitados ainda, aguardando decisão de quando entram.
+4. **Achados P3 da Auditoria de Prontidão v2.0** (não bloqueiam piloto, ver §14): sem índice explícito em FKs de alto tráfego (`responses.application_id`, `applications.company_id`); observabilidade mínima (só 1 `console.error` em todo o app); nenhuma policy de DELETE existe em nenhuma tabela (decisão de produto a confirmar se é intencional).
 
 ### Pendências anteriores (ainda válidas)
 
-6. Se/quando decidirem personalizar por gênero: ver estimativa em §9.2.
-7. SMTP customizado no Supabase (ou desativar confirmação de e-mail) para parar de depender do rate-limit do provedor padrão.
-8. ~~Rotacionar as chaves~~ — decisão tomada: **não fazer agora** (ver §11). Não sugerir de novo a menos que algo mude (vazamento real ou ida pra produção).
-9. **`NEXT_PUBLIC_APP_URL` no ambiente Preview do Vercel:** parece configurada só para Production — em qualquer branch/preview, links públicos gerados pelo app (`/aplicacoes`, `/aplicacoes/[id]`, `/dashboard`) caem no fallback `http://localhost:3000` em vez da URL real do preview. Não afeta produção (lá a env var existe), mas vale configurar também pro Preview se for comum revisar branches antes do merge.
+5. Se/quando decidirem personalizar por gênero: ver estimativa em §9.2.
+6. SMTP customizado no Supabase (ou desativar confirmação de e-mail) para parar de depender do rate-limit do provedor padrão.
+7. ~~Rotacionar as chaves~~ — decisão tomada: **não fazer agora** (ver §11). Não sugerir de novo a menos que algo mude (vazamento real ou ida pra produção).
+8. **`NEXT_PUBLIC_APP_URL` no ambiente Preview do Vercel:** parece configurada só para Production — em qualquer branch/preview, links públicos gerados pelo app (`/aplicacoes`, `/aplicacoes/[id]`, `/dashboard`) caem no fallback `http://localhost:3000` em vez da URL real do preview. Não afeta produção (lá a env var existe), mas vale configurar também pro Preview se for comum revisar branches antes do merge.
 
 ---
 
@@ -278,3 +286,22 @@ Proteção em `src/middleware.ts` (`PROTECTED_PREFIXES` / `AUTH_PREFIXES`).
 - **Score ≠ Confiança (v2):** nunca tratar um indicador/pilar com `confidence` abaixo de "alta" como sinal confiável de comportamento fraco — é isso que o motor e o relatório agora existem para evitar. Se for alterar a fórmula de agregação de novo, documentar o motivo e testar com casos reais antes (ver `EVOLUA_METODOLOGIA_V2.md` para o padrão de teste usado).
 - Ao mexer em RLS: sempre testar com `service_role` direto (não confiar no HTTP status da tentativa) e sempre checar se há FK apontando para a tabela que você está restringindo.
 - Ao mexer em `lib/motor/*`: commitar e pushar antes de testar em produção — ver gotcha §10.11.
+
+---
+
+## 14. Auditoria de Prontidão para Operação Real v2.0 (11/09/2026)
+
+Auditoria completa (segurança, estado do banco, motor, relatório, UX, performance, observabilidade) sobre o commit `2079560`, cobrindo o que a consolidação v2 não cobria: será que a implementação respeita de fato as decisões tomadas? Nenhuma correção foi feita durante a auditoria em si — só depois, com aprovação explícita.
+
+### Veredito: 🟢 GO (com as duas correções abaixo já aplicadas)
+
+Isolamento multi-tenant **testado empiricamente** (não só por leitura de código): 2 tenants de teste criados via API, 6 vetores diretos de IDOR tentados contra a REST API de produção (ler/alterar `applications`/`profiles`/`companies`/`responses` de outra empresa) — todos bloqueados pela RLS. Motor testado com 3 perfis (pouca evidência / evidência repetida consistente / mista-contraditória) + 2 edge cases (zero respostas, 28 respostas idênticas) — nenhuma exceção, nenhum `NaN`, nenhum score fora de 0-100.
+
+Dois problemas reais encontrados e **já corrigidos e verificados em produção**:
+
+1. **`update_response_progress` sem validação de estado** (RPC pública, migration 011) — aceitava forjar `status=completed` sem nenhuma resposta real, `progress` negativo, e reverter `completed→started`. Corrigido na **migration 014** (`supabase/migrations/014_response_state_validation.sql`, commit `69c2f47`): bloqueia qualquer update numa resposta já `completed`, valida limites de `progress`/`current_question`, e só permite `completed` se todas as respostas existirem em `answers`. Os 3 testes de reprodução do problema agora retornam erro (`response_already_completed`, `cannot_complete_without_all_answers`, `invalid_progress`); fluxo normal de resposta seguiu funcionando (regressão testada).
+2. **Resumo do relatório não refletia confiança baixa** — o parágrafo do topo (`profile.summary`) e o badge de perfil afirmavam DISC/Tipo/Motivador/Estilo como fato mesmo quando a mesma dimensão aparecia com selo "tendência" (baixa confiança) na seção Leituras Complementares, na mesma tela. Corrigido no commit `69c2f47`: cada cláusula do resumo agora checa a confiança da sua própria dimensão e usa linguagem hedged quando baixa. Verificado com relatório real: um perfil com DISC/Tipo confiantes e Motivador não-confiante gerou resumo corretamente misto (só a cláusula do motivador ficou hedged).
+
+**Achados que não bloqueiam o piloto (P2/P3, backlog):** cobertura de confiança "alta" atinge só ~1 de 35 indicadores mesmo com questionário 100% completo (estrutural, já documentado em §5 — comunicar ao cliente-piloto antes de começar, não é bug); falta apresentação especial de I20/I35 (§12); sem índice explícito em algumas FKs de alto tráfego (relevante só a partir de dezenas de empresas); observabilidade mínima (só 1 `console.error` em todo o app); nenhuma policy de DELETE existe em nenhuma tabela (nem para gestor — decisão de produto a confirmar se é intencional).
+
+**Metodologia de teste usada** (reutilizável para próximas rodadas): tenants de teste criados via `POST /auth/v1/signup` com `data:{full_name, company_name}` (nunca senha em campo de UI — ver gotcha §10.10), aplicações/respostas criadas via REST direto ou RPC pública, verificação sempre com consulta real pós-aplicação (nunca só comparação com arquivo local), cleanup consolidado num único script SQL por rodada, aprovado antes de rodar.

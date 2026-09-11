@@ -138,10 +138,22 @@ Diagnóstico (item 7 do prompt): o problema não é mapeamento nem construção 
 3. **Camadas complementares (DISC, Tipo Psicológico, Motivadores, Estilo Operacional)** — já implementadas e validadas anteriormente com 3 personas reais via UI (166 vínculos: 40 DISC, 17 Tipo, 11 Motivador, 46 Estilo). As correções desta consolidação tocaram exclusivamente `alternative_indicators`; os vínculos dessas 4 camadas não foram alterados e continuam válidos como estavam. Reavaliação: nenhuma das alternativas cujo vínculo de indicador mudou nesta rodada teve seu texto alterado, então a leitura comportamental que sustentava os vínculos de DISC/Tipo/Motivador/Estilo permanece válida sem necessidade de nova auditoria.
 4. **Indicador de confiança visível também no nível do indicador individual dentro do card do pilar** (hoje só o agregado do pilar aparece na UI) — considerar se vale a pena para o gestor ver o detalhe por indicador, não só por pilar, sem poluir a tela (o app já prioriza "pouco texto, muito espaço" — CLAUDE.md).
 
+## 12. Auditoria de Prontidão v2.0 (11/09/2026) — o que confirmou e o que corrigiu
+
+Depois desta consolidação, uma auditoria separada (segurança, estado do banco, motor, relatório, UX, performance — ver `HANDOFF.md` §14 para o relato completo) verificou se a implementação respeita de verdade o que este documento descreve. Resultado: **confirmado, com 2 correções aplicadas**.
+
+- **Confirmado sem ressalva:** isolamento multi-tenant (testado com 2 tenants reais e 6 tentativas diretas de acesso cruzado, todas bloqueadas), e o motor (3 perfis + 2 edge cases, nenhuma exceção/NaN/score fora de faixa, confiança sobe corretamente com evidência repetida).
+- **Corrigido — Problema 1:** a função `update_response_progress` (a RPC que atualiza o progresso de uma resposta) não validava estado — era possível forjar uma resposta como "concluída" sem nenhuma resposta real, ou reverter uma resposta já concluída de volta para "em andamento". Migration 014 fecha isso; os 3 testes que reproduziam o problema agora retornam erro.
+- **Corrigido — Problema 2:** o resumo no topo do relatório (o parágrafo logo abaixo do badge "Perfil X") apresentava DISC/Tipo/Motivador/Estilo como fato mesmo quando a mesma informação aparecia com o selo "tendência" (confiança baixa) na seção Leituras Complementares, mais abaixo na mesma tela — quebrava o princípio central deste documento (Seção 9: "não deve tratar confiança baixa como fato") num dos lugares mais visíveis do relatório. Agora cada cláusula do resumo usa linguagem hedged quando a confiança daquela dimensão específica é baixa.
+
+Achados que ficaram como backlog, não bloqueiam nada do que está descrito aqui: apresentação especial de I20/I35 (Seção 11, ainda não implementada), e itens de performance/observabilidade sem relação com a metodologia (ver `HANDOFF.md` §12/§14).
+
 ---
 
 ## Pendências que dependem de você
 
-1. **Aprovar e rodar** [backups/metodologia_v2/12_correcao_mapeamento_v2.sql](backups/metodologia_v2/12_correcao_mapeamento_v2.sql) (140 vínculos corrigidos, já copiado para sua área de transferência).
-2. Depois de rodar: peço para eu fazer a **verificação ao vivo em produção** (consulta real, não comparação com arquivo) antes de considerar a correção do mapeamento concluída.
-3. Decidir se quer que eu avance com a apresentação especial de I20/I35 (item 1 da Seção 11) como próximo passo.
+1. ~~Aprovar e rodar o script de correção do mapeamento~~ — feito, confirmado ao vivo (140 vínculos).
+2. ~~Verificação ao vivo em produção do mapeamento~~ — feita.
+3. ~~Corrigir `update_response_progress`~~ — feito (migration 014), verificado.
+4. ~~Corrigir linguagem do resumo do relatório~~ — feito, verificado com relatório real.
+5. Decidir se quer que eu avance com a apresentação especial de I20/I35 (item 1 da Seção 11) como próximo passo.
