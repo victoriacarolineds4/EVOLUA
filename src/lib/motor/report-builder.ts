@@ -20,7 +20,7 @@ import type { Confidence, DimensionResult, PillarScore, RawDiagnosis } from "./t
 
 export interface GeneratedReport {
   collaborator: { name: string; role: string; completedAt: string };
-  profile: { label: string; overall: number; overallLevel: string; summary: string };
+  profile: { label: string; labelConfident: boolean; overall: number; overallLevel: string; summary: string };
   essential: { headline: string; actions: string[] };
   howTo: { key: string; title: string; items: string[] }[];
   pillars: PillarScore[];
@@ -70,11 +70,28 @@ export function buildReport(
   const firstName = collaborator.name.split(" ")[0] || collaborator.name;
 
   // ---- Perfil ----
+  // Mesma informação (DISC/Tipo/Motivador/Estilo) usada nas "Leituras
+  // Complementares" abaixo já é hedged com "tendência" quando a confiança
+  // é baixa (ver dimensions.confident). O resumo aqui precisa seguir o
+  // mesmo padrão — não pode afirmar como fato algo que a própria
+  // plataforma, mais abaixo na mesma tela, já marca como incerto.
   const label = PROFILE_LABEL[disc.code] ?? "Perfil em construção";
   const summary =
-    `${firstName} tem ${discG?.age ?? "um jeito próprio de agir"}. ` +
-    `Pensa ${tipoG?.pensa ?? "à sua maneira"} e se move principalmente por ${mot.name.toLowerCase()}. ` +
-    `Trabalha melhor quando ${estG?.trabalha ?? "atua no próprio estilo"}.`;
+    (disc.confident
+      ? `${firstName} tem ${discG?.age ?? "um jeito próprio de agir"}.`
+      : `${firstName} aparenta ter ${discG?.age ?? "um jeito próprio de agir"}, com poucas evidências até aqui.`) +
+    " " +
+    (tipo.confident
+      ? `Pensa ${tipoG?.pensa ?? "à sua maneira"}`
+      : `Tende a pensar ${tipoG?.pensa ?? "à sua maneira"}`) +
+    " e " +
+    (d.motivators.sufficient
+      ? `se move principalmente por ${mot.name.toLowerCase()}.`
+      : `pode se mover por ${mot.name.toLowerCase()}, ainda com poucas evidências.`) +
+    " " +
+    (est.confident
+      ? `Trabalha melhor quando ${estG?.trabalha ?? "atua no próprio estilo"}.`
+      : `Tende a trabalhar melhor quando ${estG?.trabalha ?? "atua no próprio estilo"}, a confirmar com mais observação.`);
 
   // ---- Essencial (30s) ----
   const headline =
@@ -148,6 +165,7 @@ export function buildReport(
     collaborator,
     profile: {
       label,
+      labelConfident: disc.confident,
       overall: d.overall,
       overallLevel: LEVEL_LABELS[scoreToLevel(d.overall)],
       summary,

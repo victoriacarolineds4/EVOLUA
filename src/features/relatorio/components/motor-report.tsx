@@ -56,6 +56,9 @@ export function MotorReport({ report: r }: { report: GeneratedReport }) {
           <div className="flex flex-wrap items-center gap-6 border-t border-border pt-6">
             <span className="rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
               {r.profile.label}
+              {!r.profile.labelConfident && (
+                <span className="ml-1.5 text-[10px] font-medium text-primary/60">tendência</span>
+              )}
             </span>
             <div className="ml-auto flex items-center gap-3">
               <span className="text-xs text-muted-foreground">Score geral</span>
