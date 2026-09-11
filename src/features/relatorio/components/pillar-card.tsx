@@ -1,9 +1,16 @@
-import type { PillarScore } from "@/lib/motor/types";
+import type { Confidence, PillarScore } from "@/lib/motor/types";
 import { ScoreRing } from "@/components/ui/score-ring";
 
 interface PillarCardProps {
   pillar: PillarScore;
 }
+
+const CONFIDENCE_LABEL: Record<Confidence, string> = {
+  insuficiente: "Dados insuficientes",
+  baixa: "Confiança baixa",
+  moderada: "Confiança moderada",
+  alta: "Confiança alta",
+};
 
 export function PillarCard({ pillar }: PillarCardProps) {
   return (
@@ -17,8 +24,20 @@ export function PillarCard({ pillar }: PillarCardProps) {
             {pillar.name}
           </h3>
         </div>
-        <ScoreRing value={pillar.score} size={44} strokeWidth={3} />
+        {pillar.hasScore ? (
+          <ScoreRing value={pillar.score} size={44} strokeWidth={3} />
+        ) : (
+          <div className="flex size-11 shrink-0 items-center justify-center rounded-full border border-dashed border-border text-[9px] leading-tight text-muted-foreground text-center px-1">
+            sem dados
+          </div>
+        )}
       </div>
+      {pillar.confidence !== "alta" && (
+        <p className="mt-3 border-t border-dashed border-border pt-2 text-[11px] text-muted-foreground">
+          {CONFIDENCE_LABEL[pillar.confidence]}
+          {pillar.hasScore && ` · ${pillar.indicatorsWithScore}/5 indicadores com evidência`}
+        </p>
+      )}
     </div>
   );
 }

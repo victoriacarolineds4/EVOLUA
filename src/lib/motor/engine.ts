@@ -22,7 +22,9 @@
 
 import {
   MIN_EVIDENCE_SITUATIONS,
+  evidenceCountToConfidence,
   scoreToLevel,
+  weakestConfidence,
 } from "./scoring";
 import type {
   AttributeRef,
@@ -184,6 +186,7 @@ export function computeDiagnosis(input: MotorInput): RawDiagnosis {
     const a = indAgg.get(ind.id);
     const score = toScore(a);
     const evidenceCount = a?.evidenceCount ?? 0;
+    const confidence = evidenceCountToConfidence(evidenceCount);
     return {
       code: ind.code,
       name: ind.name,
@@ -191,17 +194,23 @@ export function computeDiagnosis(input: MotorInput): RawDiagnosis {
       score,
       level: scoreToLevel(score),
       evidenceCount,
+      confidence,
+      hasScore: confidence !== "insuficiente",
       sufficient: evidenceCount >= MIN_EVIDENCE_SITUATIONS,
     };
   });
 
-  // Pilares (média dos indicadores do pilar)
+  // Pilares — média SÓ dos indicadores com evidência real (hasScore=true).
+  // Indicadores sem nenhuma evidência (confidence="insuficiente") não entram
+  // no cálculo: não há dado nenhum ali, então não há o que promediar — é
+  // diferente de "excluir quem pontuou baixo" (isso continuaria incluído).
   const pillars: PillarScore[] = input.pillars
     .map((p) => {
       const inds = indicatorScores.filter((i) => i.pillarNumber === p.number);
+      const withScore = inds.filter((i) => i.hasScore);
       const score =
-        inds.length > 0
-          ? Math.round(inds.reduce((s, i) => s + i.score, 0) / inds.length)
+        withScore.length > 0
+          ? Math.round(withScore.reduce((s, i) => s + i.score, 0) / withScore.length)
           : 0;
       return {
         number: p.number,
@@ -209,13 +218,20 @@ export function computeDiagnosis(input: MotorInput): RawDiagnosis {
         score,
         level: scoreToLevel(score),
         indicators: inds,
+        confidence: weakestConfidence(withScore.map((i) => i.confidence)),
+        hasScore: withScore.length > 0,
+        indicatorsWithScore: withScore.length,
       };
     })
     .sort((a, b) => a.number - b.number);
 
+  // Geral — média só dos pilares que têm score (mesmo princípio).
+  const pillarsWithScore = pillars.filter((p) => p.hasScore);
   const overall =
-    pillars.length > 0
-      ? Math.round(pillars.reduce((s, p) => s + p.score, 0) / pillars.length)
+    pillarsWithScore.length > 0
+      ? Math.round(
+          pillarsWithScore.reduce((s, p) => s + p.score, 0) / pillarsWithScore.length,
+        )
       : 0;
 
   return {

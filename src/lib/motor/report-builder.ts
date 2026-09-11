@@ -6,7 +6,7 @@
 // Determinístico: mesmo diagnóstico → mesmo relatório.
 // ============================================================
 
-import { LEVEL_LABELS } from "./scoring";
+import { LEVEL_LABELS, scoreToLevel } from "./scoring";
 import {
   DISC_GUIDANCE,
   MOTIVATOR_GUIDANCE,
@@ -16,7 +16,7 @@ import {
   STYLE_GUIDANCE,
   TYPE_GUIDANCE,
 } from "./translation";
-import type { DimensionResult, PillarScore, RawDiagnosis } from "./types";
+import type { Confidence, DimensionResult, PillarScore, RawDiagnosis } from "./types";
 
 export interface GeneratedReport {
   collaborator: { name: string; role: string; completedAt: string };
@@ -31,8 +31,8 @@ export interface GeneratedReport {
     doThis: string;
     confident: boolean;
   }[];
-  strengths: { title: string; description: string }[];
-  attentionPoints: { title: string; description: string }[];
+  strengths: { title: string; description: string; confidence: Confidence }[];
+  attentionPoints: { title: string; description: string; confidence: Confidence }[];
   plan: { period: string; actions: string[] }[];
 }
 
@@ -57,11 +57,15 @@ export function buildReport(
   const tipoG = TYPE_GUIDANCE[tipo.code];
   const estG = STYLE_GUIDANCE[est.code];
 
-  const byScoreDesc = [...d.pillars].sort((a, b) => b.score - a.score);
+  // Só pilares com evidência real entram nas leituras de "forte"/"atenção" —
+  // um pilar sem score (hasScore=false) não é fraco, é "ainda não observado",
+  // e não deve aparecer como um ponto fraco no relatório.
+  const measurablePillars = d.pillars.filter((p) => p.hasScore);
+  const byScoreDesc = [...measurablePillars].sort((a, b) => b.score - a.score);
   const strong = byScoreDesc.slice(0, 3);
   const weak = [...byScoreDesc].reverse().slice(0, 2);
-  const topPillar = byScoreDesc[0];
-  const bottomPillar = byScoreDesc[byScoreDesc.length - 1];
+  const topPillar = byScoreDesc[0] ?? d.pillars[0];
+  const bottomPillar = byScoreDesc[byScoreDesc.length - 1] ?? d.pillars[0];
 
   const firstName = collaborator.name.split(" ")[0] || collaborator.name;
 
@@ -89,7 +93,7 @@ export function buildReport(
     { key: "feedback", title: "Como dar feedback", items: [discG?.feedback, tipoG?.comunicar] },
     { key: "motivar", title: "Como motivar", items: topMots.map((m) => MOTIVATOR_GUIDANCE[m.code]?.motivar) },
     { key: "reconhecer", title: "Como reconhecer", items: topMots.map((m) => MOTIVATOR_GUIDANCE[m.code]?.reconhecer) },
-    { key: "desenvolver", title: "Como desenvolver", items: [PILLAR_ATTENTION[weak[0].number], tipoG?.desenvolver] },
+    { key: "desenvolver", title: "Como desenvolver", items: [weak[0] ? PILLAR_ATTENTION[weak[0].number] : undefined, tipoG?.desenvolver] },
   ].map((b) => ({ ...b, items: b.items.filter(Boolean) as string[] }));
 
   // ---- Dimensões (com "faça isso") ----
@@ -104,10 +108,12 @@ export function buildReport(
   const strengths = strong.map((p) => ({
     title: p.name,
     description: PILLAR_STRENGTH[p.number] ?? "",
+    confidence: p.confidence,
   }));
   const attentionPoints = weak.map((p) => ({
     title: p.name,
     description: PILLAR_ATTENTION[p.number] ?? "",
+    confidence: p.confidence,
   }));
 
   // ---- Plano 30/60/90 ----
@@ -123,7 +129,7 @@ export function buildReport(
     {
       period: "60 dias",
       actions: [
-        PILLAR_ATTENTION[weak[0].number] ?? "",
+        (weak[0] ? PILLAR_ATTENTION[weak[0].number] : undefined) ?? "",
         `Dê uma responsabilidade que exercite ${bottomPillar.name} com suporte próximo.`,
         MOTIVATOR_GUIDANCE[mot.code]?.motivar ?? "",
       ].filter(Boolean),
@@ -143,7 +149,7 @@ export function buildReport(
     profile: {
       label,
       overall: d.overall,
-      overallLevel: LEVEL_LABELS[d.pillars[0]?.level ?? "evoluindo"],
+      overallLevel: LEVEL_LABELS[scoreToLevel(d.overall)],
       summary,
     },
     essential: { headline, actions: essentialActions },

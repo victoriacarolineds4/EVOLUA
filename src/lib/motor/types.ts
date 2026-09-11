@@ -17,6 +17,18 @@ export type Level =
 /** Intensidade da evidência de uma alternativa para um atributo. */
 export type EvidenceStrength = 0 | 1 | 2 | 3;
 
+/**
+ * Confiança da medição — independente do score. Baseada em quantas
+ * situações DISTINTAS geraram evidência genuína (não em quantas
+ * alternativas apontam para o indicador — dentro de uma situação só
+ * se escolhe uma alternativa, então o piso real é por situação).
+ *   insuficiente → 0 situações: não há score para mostrar, só "dados insuficientes".
+ *   baixa        → 1 situação.
+ *   moderada     → 2 situações.
+ *   alta         → 3+ situações (piso MIN_EVIDENCE_SITUATIONS atingido).
+ */
+export type Confidence = "insuficiente" | "baixa" | "moderada" | "alta";
+
 // ---------- Entrada do Motor ----------
 
 /** Um vínculo alternativa → atributo, com intensidade. */
@@ -74,18 +86,27 @@ export interface IndicatorScore {
   code: string;
   name: string;
   pillarNumber: number;
-  score: number; // 0-100
+  score: number; // 0-100 (0 quando confidence = "insuficiente"; ver hasScore)
   level: Level;
-  evidenceCount: number; // nº de situações que contribuíram
-  sufficient: boolean; // atingiu o piso de evidência?
+  evidenceCount: number; // nº de situações distintas que contribuíram
+  confidence: Confidence;
+  /** true quando há evidência real (evidenceCount ≥ 1) e `score` deve ser exibido. */
+  hasScore: boolean;
+  /** @deprecated use `confidence === "alta"`. Mantido para não quebrar leitores antigos. */
+  sufficient: boolean;
 }
 
 export interface PillarScore {
   number: number;
   name: string;
-  score: number; // 0-100 (média dos indicadores)
+  score: number; // 0-100 — média SÓ dos indicadores com hasScore=true
   level: Level;
   indicators: IndicatorScore[];
+  confidence: Confidence; // a mais fraca entre os indicadores considerados na média
+  /** true quando pelo menos 1 dos 5 indicadores tem evidência real. */
+  hasScore: boolean;
+  /** quantos dos 5 indicadores entraram na média (hasScore=true). */
+  indicatorsWithScore: number;
 }
 
 /** Um atributo de uma dimensão categórica (DISC, Tipo, etc.). */

@@ -24,7 +24,7 @@ const PERIOD_STYLES: Record<string, string> = {
 export function MotorReport({ report: r }: { report: GeneratedReport }) {
   const confirmedIndicators = r.pillars
     .flatMap((p) => p.indicators)
-    .filter((ind) => ind.sufficient)
+    .filter((ind) => ind.confidence === "alta")
     .sort((a, b) => b.score - a.score);
 
   return (
@@ -198,6 +198,11 @@ export function MotorReport({ report: r }: { report: GeneratedReport }) {
                   <div key={i}>
                     <p className="text-sm font-semibold text-foreground">{s.title}</p>
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{s.description}</p>
+                    {s.confidence !== "alta" && (
+                      <p className="mt-1 text-xs text-muted-foreground/70">
+                        Confiança {s.confidence} — poucas situações evidenciaram este pilar até agora.
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
@@ -212,6 +217,11 @@ export function MotorReport({ report: r }: { report: GeneratedReport }) {
                   <div key={i}>
                     <p className="text-sm font-semibold text-foreground">{a.title}</p>
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{a.description}</p>
+                    {a.confidence !== "alta" && (
+                      <p className="mt-1 text-xs text-warning/80">
+                        Confiança {a.confidence} — este score reflete pouca evidência observada, não necessariamente um comportamento fraco. Recomendamos observar antes de agir sobre este ponto.
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
