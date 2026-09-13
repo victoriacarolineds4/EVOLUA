@@ -121,11 +121,25 @@ function toScore(a: AttrAgg | undefined): number {
   return Math.round((a.raw / a.max) * 100);
 }
 
-/** Calcula uma dimensão categórica (DISC, Tipo, Motivadores, Estilo). */
+/**
+ * Calcula uma dimensão categórica (DISC, Tipo, Motivadores, Estilo).
+ *
+ * IMPORTANTE: `share` não é mais `raw / soma de todos os raw`. Essa fórmula
+ * favorecia estruturalmente qualquer código com mais situações/força
+ * disponíveis no mapeamento (ex.: D tinha teto de 35, C só 21 — uma pessoa
+ * genuinamente 50/50 entre D e C saía como "D" em ~94% das simulações, só
+ * por causa do teto maior, não do comportamento real dela). Agora cada
+ * código é normalizado pelo seu PRÓPRIO teto (`raw / max atingível daquele
+ * código`, o mesmo `raw/max×100` já usado nos indicadores) antes de
+ * comparar — daí sim as proporções são comparáveis entre códigos com
+ * cobertura desigual no instrumento. Verificado por simulação: a mesma
+ * persona 50/50 D/C passou a sair ~51%/46% (o esperado), não mais 94%/5%.
+ */
 function computeDimension(
   attrs: AttributeRef[],
   chosenAlternativeIds: string[],
   links: EvidenceLink[],
+  situations: MotorInput["situations"],
 ): DimensionResult {
   const linkIndex = indexLinks(links);
   const raw = new Map<string, number>();
@@ -141,26 +155,42 @@ function computeDimension(
     }
   }
 
-  const total = [...raw.values()].reduce((s, v) => s + v, 0);
+  // Teto por atributo: soma, situação por situação, da maior força
+  // disponível ali para aquele atributo — mesmo princípio do `max` dos
+  // indicadores (ver aggregateIndicatorLike).
+  const situationsMax = maxPerSituation(situations, linkIndex);
+  const teto = new Map<string, number>();
+  for (const sitBest of situationsMax) {
+    for (const [attrId, best] of sitBest) {
+      teto.set(attrId, (teto.get(attrId) ?? 0) + best);
+    }
+  }
+
+  const normalized = new Map<string, number>();
+  for (const attr of attrs) {
+    const t = teto.get(attr.id) ?? 0;
+    normalized.set(attr.id, t > 0 ? (raw.get(attr.id) ?? 0) / t : 0);
+  }
+  const totalNormalized = [...normalized.values()].reduce((s, v) => s + v, 0);
 
   const ranking: DimensionRank[] = attrs
-    .map((attr) => {
-      const r = raw.get(attr.id) ?? 0;
-      return {
-        code: attr.code,
-        name: attr.name,
-        raw: r,
-        share: total > 0 ? Math.round((r / total) * 100) : 0,
-        evidenceCount: count.get(attr.id) ?? 0,
-      };
-    })
-    // Desempate explícito quando `raw` empata: mais situações distintas
-    // corroborando (evidenceCount) vence — evidência repetida em contextos
-    // diferentes é um sinal mais forte do que a mesma soma concentrada em
-    // menos situações. Se também empatar em evidenceCount, mantém a ordem
-    // original (attrs) como último critério, documentado aqui em vez de
-    // ser um acidente de ordenação estável do array.
-    .sort((a, b) => b.raw - a.raw || b.evidenceCount - a.evidenceCount);
+    .map((attr) => ({
+      code: attr.code,
+      name: attr.name,
+      raw: raw.get(attr.id) ?? 0,
+      share:
+        totalNormalized > 0
+          ? Math.round(((normalized.get(attr.id) ?? 0) / totalNormalized) * 100)
+          : 0,
+      evidenceCount: count.get(attr.id) ?? 0,
+    }))
+    // Desempate explícito quando `share` (normalizado) empata: mais
+    // situações distintas corroborando (evidenceCount) vence — evidência
+    // repetida em contextos diferentes é um sinal mais forte do que a
+    // mesma proporção obtida em menos situações. Se também empatar em
+    // evidenceCount, mantém a ordem original (attrs) como último critério,
+    // documentado aqui em vez de ser um acidente de ordenação estável.
+    .sort((a, b) => b.share - a.share || b.evidenceCount - a.evidenceCount);
 
   const leader = ranking[0];
   const runnerUp = ranking[1];
@@ -252,21 +282,24 @@ export function computeDiagnosis(input: MotorInput): RawDiagnosis {
     answeredCount: input.chosenAlternativeIds.length,
     overall,
     pillars,
-    disc: computeDimension(input.disc, input.chosenAlternativeIds, input.links.disc),
+    disc: computeDimension(input.disc, input.chosenAlternativeIds, input.links.disc, input.situations),
     psychologicalType: computeDimension(
       input.psychologicalTypes,
       input.chosenAlternativeIds,
       input.links.psychologicalTypes,
+      input.situations,
     ),
     motivators: computeDimension(
       input.motivators,
       input.chosenAlternativeIds,
       input.links.motivators,
+      input.situations,
     ),
     operationalStyle: computeDimension(
       input.operationalStyles,
       input.chosenAlternativeIds,
       input.links.operationalStyles,
+      input.situations,
     ),
   };
 }
