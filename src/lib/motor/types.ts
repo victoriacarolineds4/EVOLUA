@@ -121,8 +121,14 @@ export interface DimensionRank {
 export interface DimensionResult {
   /** Atributo predominante, se houver evidência suficiente. */
   top: DimensionRank | null;
-  ranking: DimensionRank[]; // ordenado desc por raw
+  ranking: DimensionRank[]; // ordenado desc por raw, com desempate explícito (ver engine.ts)
   sufficient: boolean;
+  /**
+   * true quando o 1º e o 2º colocado estão a ≤ DISC_PROXIMITY_MARGIN pontos
+   * percentuais de share um do outro — o predominante não deve ser lido como
+   * uma diferença clara. Ver `scoring.ts`.
+   */
+  isClose: boolean;
 }
 
 export interface RawDiagnosis {

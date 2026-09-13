@@ -21,6 +21,7 @@
 // ============================================================
 
 import {
+  DIMENSION_PROXIMITY_MARGIN,
   MIN_EVIDENCE_SITUATIONS,
   evidenceCountToConfidence,
   scoreToLevel,
@@ -153,18 +154,31 @@ function computeDimension(
         evidenceCount: count.get(attr.id) ?? 0,
       };
     })
-    .sort((a, b) => b.raw - a.raw);
+    // Desempate explícito quando `raw` empata: mais situações distintas
+    // corroborando (evidenceCount) vence — evidência repetida em contextos
+    // diferentes é um sinal mais forte do que a mesma soma concentrada em
+    // menos situações. Se também empatar em evidenceCount, mantém a ordem
+    // original (attrs) como último critério, documentado aqui em vez de
+    // ser um acidente de ordenação estável do array.
+    .sort((a, b) => b.raw - a.raw || b.evidenceCount - a.evidenceCount);
 
   const leader = ranking[0];
+  const runnerUp = ranking[1];
   const sufficient =
     !!leader &&
     leader.raw > 0 &&
     leader.evidenceCount >= MIN_EVIDENCE_SITUATIONS;
+  const isClose =
+    !!leader &&
+    !!runnerUp &&
+    runnerUp.raw > 0 &&
+    leader.share - runnerUp.share <= DIMENSION_PROXIMITY_MARGIN;
 
   return {
     top: sufficient ? leader : null,
     ranking,
     sufficient,
+    isClose,
   };
 }
 

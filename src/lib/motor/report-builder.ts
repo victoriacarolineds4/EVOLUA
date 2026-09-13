@@ -36,10 +36,22 @@ export interface GeneratedReport {
   plan: { period: string; actions: string[] }[];
 }
 
-/** Atributo líder de uma dimensão (usa o predominante; se pouca evidência, o mais votado). */
+/**
+ * Atributo líder de uma dimensão (usa o predominante; se pouca evidência, o
+ * mais votado). `confident` exige evidência suficiente E que o 2º colocado
+ * não esteja próximo (`!isClose`) — um resultado apertado não deve ser
+ * apresentado como diferença clara só porque bateu o piso de evidência.
+ */
 function leader(dim: DimensionResult) {
   const l = dim.top ?? dim.ranking[0] ?? null;
-  return { code: l?.code ?? "", name: l?.name ?? "—", confident: dim.sufficient };
+  const second = dim.ranking[1];
+  return {
+    code: l?.code ?? "",
+    name: l?.name ?? "—",
+    confident: dim.sufficient && !dim.isClose,
+    isClose: dim.isClose,
+    secondName: dim.isClose ? (second?.name ?? null) : null,
+  };
 }
 
 export function buildReport(
@@ -79,7 +91,9 @@ export function buildReport(
   const summary =
     (disc.confident
       ? `${firstName} tem ${discG?.age ?? "um jeito próprio de agir"}.`
-      : `${firstName} aparenta ter ${discG?.age ?? "um jeito próprio de agir"}, com poucas evidências até aqui.`) +
+      : disc.isClose
+        ? `${firstName} aparenta ter ${discG?.age ?? "um jeito próprio de agir"}, mas o resultado está próximo de outro perfil (${disc.secondName ?? "outro perfil"}) — ainda não dá para afirmar uma tendência clara.`
+        : `${firstName} aparenta ter ${discG?.age ?? "um jeito próprio de agir"}, com poucas evidências até aqui.`) +
     " " +
     (tipo.confident
       ? `Pensa ${tipoG?.pensa ?? "à sua maneira"}`

@@ -15,6 +15,14 @@ import type { Confidence, Level } from "./types";
 export const MIN_EVIDENCE_SITUATIONS = 3;
 
 /**
+ * Margem de proximidade (pontos percentuais de `share`) abaixo da qual o 1º
+ * e o 2º colocado de uma dimensão categórica (DISC, Tipo, Motivador, Estilo)
+ * são tratados como "próximos" — o predominante não deve ser apresentado
+ * como uma diferença clara quando a distância é essa pequena.
+ */
+export const DIMENSION_PROXIMITY_MARGIN = 10;
+
+/**
  * Cortes da escala de 4 níveis (0-100). Ajustáveis.
  *   0–39  → Precisa de atenção
  *   40–64 → Está evoluindo
