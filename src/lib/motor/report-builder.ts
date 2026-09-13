@@ -20,7 +20,7 @@ import type { Confidence, DimensionResult, PillarScore, RawDiagnosis } from "./t
 
 export interface GeneratedReport {
   collaborator: { name: string; role: string; completedAt: string };
-  profile: { label: string; labelConfident: boolean; overall: number; overallLevel: string; summary: string };
+  profile: { code: string; label: string; labelConfident: boolean; overall: number; overallLevel: string; summary: string };
   essential: { headline: string; actions: string[] };
   howTo: { key: string; title: string; items: string[] }[];
   pillars: PillarScore[];
@@ -164,6 +164,7 @@ export function buildReport(
   return {
     collaborator,
     profile: {
+      code: disc.code,
       label,
       labelConfident: disc.confident,
       overall: d.overall,

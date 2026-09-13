@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { PillarCard } from "@/features/relatorio/components/pillar-card";
+import { ProfileCard } from "@/features/relatorio/components/profile-card";
 import { ReportSection } from "@/features/relatorio/components/report-section";
 import { RadarChartWrapper } from "@/features/relatorio/components/radar-chart-wrapper";
 import { ScoreRing } from "@/components/ui/score-ring";
@@ -65,10 +66,15 @@ export function MotorReport({ report: r }: { report: GeneratedReport }) {
               <ScoreRing value={r.profile.overall} size={64} strokeWidth={4} />
             </div>
           </div>
-          <p className="text-sm leading-relaxed text-muted-foreground border-t border-border pt-4">
-            {r.profile.summary}
-          </p>
         </div>
+
+        {/* ── SEU PERFIL ── */}
+        <ProfileCard
+          code={r.profile.code}
+          label={r.profile.label}
+          confident={r.profile.labelConfident}
+          summary={r.profile.summary}
+        />
 
         {/* ── ESSENCIAL (30s) ── */}
         <div className="rounded-2xl border border-primary/30 bg-primary/[0.04] p-8 space-y-5">
