@@ -1,0 +1,298 @@
+{
+  "audit_existing": {
+    "S02-A": [
+      "weak_reclassify",
+      "C",
+      "Ordenar por urgência é critério/organização (C), não enfrentamento/assertividade (D). Já mede I02 como indicador de priorização."
+    ],
+    "S04-B": [
+      "keep",
+      "D",
+      "Entregar sem revisar = viés à ação/velocidade, fraco mas defensável em D=1."
+    ],
+    "S05-A": [
+      "keep",
+      "D",
+      "Avisar sem solução pronta = iniciativa+velocidade+enfrentamento direto. D forte."
+    ],
+    "S06-A": [
+      "keep",
+      "D",
+      "Assumir na hora sem justificar = assertividade/enfrentamento direto. D forte."
+    ],
+    "S06-C": [
+      "weak_reclassify",
+      "S",
+      "Pedir desculpas primeiro é reparo relacional/construção de confiança (S), não persuasão/mobilização (I)."
+    ],
+    "S07-A": [
+      "keep",
+      "C",
+      "Nova estimativa = precisão/estrutura na comunicação do atraso."
+    ],
+    "S07-B": [
+      "keep",
+      "D",
+      "Tentar resolver sozinho antes de avisar = autonomia. D fraco mas defensável."
+    ],
+    "S08-D": [
+      "keep",
+      "S",
+      "Aceitar com insegurança e ajustar no caminho = estabilidade diante da mudança."
+    ],
+    "S09-A": [
+      "keep",
+      "S",
+      "Adaptar-se sem entender todos os motivos = constância/previsibilidade clássica de S."
+    ],
+    "S09-D": [
+      "keep",
+      "S",
+      "Resistência inicial seguida de ajuste = mesmo padrão S, mais fraco."
+    ],
+    "S11-A": [
+      "keep",
+      "S",
+      "Ouvir tudo antes de reagir = paciência clássica de S."
+    ],
+    "S11-D": [
+      "keep",
+      "S",
+      "Incômodo seguido de calma = mesmo padrão S, mais fraco."
+    ],
+    "S12-D": [
+      "keep",
+      "S",
+      "Aprender aos poucos no ritmo do dia a dia = constância."
+    ],
+    "S13-A": [
+      "weak_reclassify",
+      "S",
+      "Ajudar na hora é suporte/colaboração (S), não comunicação/persuasão/mobilização (I)."
+    ],
+    "S14-A": [
+      "keep",
+      "I",
+      "Aproximar-se e se apresentar = iniciativa social, entusiasmo, interação. I forte."
+    ],
+    "S14-C": [
+      "keep",
+      "S",
+      "Deixar no próprio ritmo mas ficar disponível = suporte paciente."
+    ],
+    "S15-B": [
+      "weak_remove",
+      null,
+      "Não se envolver a menos que afete o trabalho não discrimina claramente nenhuma das 4 dimensões — mais sobre limite de escopo do que estilo comportamental DISC."
+    ],
+    "S15-C": [
+      "weak_remove",
+      null,
+      "Sugerir que conversem entre si é delegação/baixo envolvimento, não decisão assertiva (D) no sentido do construto."
+    ],
+    "S16-B": [
+      "keep",
+      "D",
+      "Foco no resultado comum = 'foco em resultado', textual no construto D."
+    ],
+    "S16-D": [
+      "keep",
+      "S",
+      "Encontrar jeito de conviver aos poucos = estabilidade/constância."
+    ],
+    "S17-A": [
+      "keep",
+      "I",
+      "Compartilhar a ideia assim que surge = expressão/entusiasmo/iniciativa de comunicação."
+    ],
+    "S18-A": [
+      "keep",
+      "D",
+      "Ir direto ao ponto = assertividade clássica de D."
+    ],
+    "S18-C": [
+      "keep",
+      "S",
+      "Escolher bom momento para não pegar de surpresa = cuidado relacional/construção de confiança."
+    ],
+    "S19-A": [
+      "keep",
+      "I",
+      "Pedir direto sem constrangimento = expressão social desinibida, próprio de I."
+    ],
+    "S19-B": [
+      "weak_reclassify",
+      "D",
+      "Tentar sozinho antes de pedir ajuda é autonomia (D), não critério/análise (C)."
+    ],
+    "S19-D": [
+      "weak_remove",
+      null,
+      "Sentir receio mas pedir quando necessário não discrimina claramente nenhuma das 4 dimensões."
+    ],
+    "S20-A": [
+      "keep",
+      "D",
+      "Explicar direto e objetivo = assertividade/eficiência, D."
+    ],
+    "S20-D": [
+      "keep",
+      "I",
+      "Ajustar a explicação conforme a reação do outro = leitura social + adaptação persuasiva, I clássico."
+    ],
+    "S21-A": [
+      "keep",
+      "D",
+      "Decidir sozinho e informar depois = autonomia/decisão sob pressão, D forte."
+    ],
+    "S21-D": [
+      "keep",
+      "S",
+      "Agir com cautela, resolvendo só o essencial = estabilidade/baixo risco."
+    ],
+    "S22-B": [
+      "weak_remove",
+      null,
+      "Alternar entre tarefas ao mesmo tempo não é comunicação/persuasão (I) — é estilo de execução (Estilo Operacional), não DISC."
+    ],
+    "S22-C": [
+      "dual",
+      "D+I",
+      "Negociar prazo é decisão assertiva (D) E persuasão/negociação social (I) — caso legítimo de dupla dimensão."
+    ],
+    "S22-D": [
+      "keep",
+      "C",
+      "Foco sequencial do início ao fim = estrutura/padrão de execução."
+    ],
+    "S23-A": [
+      "keep",
+      "S",
+      "Ouvir tudo antes de responder = paciência sob pressão emocional."
+    ],
+    "S23-C": [
+      "keep",
+      "S",
+      "Manter tom calmo mesmo com cliente alterado = estabilidade emocional."
+    ],
+    "S23-D": [
+      "keep",
+      "C",
+      "Explicar com transparência o que pode/não pode = critério e limites claros."
+    ],
+    "S24-A": [
+      "keep",
+      "D",
+      "Decidir com o que tem, aceitando risco = D textual (tomada de decisão)."
+    ],
+    "S26-C": [
+      "keep",
+      "S",
+      "Ensinar no ritmo da pessoa com paciência = S clássico."
+    ],
+    "S28-B": [
+      "keep",
+      "C",
+      "Validar pontos críticos com cautela = análise/atenção a detalhes."
+    ],
+    "S27-D": [
+      "weak_remove",
+      null,
+      "Resistir à tentação e se autocorrigir é integridade geral, não discrimina D/I/S/C — qualquer perfil pode exibir esse comportamento. Não passa no teste de especificidade (item 2 da revisão)."
+    ]
+  },
+  "new_additions": {
+    "S14-B": [
+      "I",
+      2,
+      "Explicar proativamente como as coisas funcionam, sem esperar perguntarem = comunicação proativa/mobilização, I."
+    ],
+    "S26-D": [
+      "I",
+      2,
+      "Usar exemplos reais para facilitar entendimento = expressão/comunicação persuasiva, I."
+    ],
+    "S29-A": [
+      "D",
+      2,
+      "Adiantar entregas que não dependem de ninguém diante de bloqueio = iniciativa/autonomia sob impedimento, D."
+    ],
+    "S30-A": [
+      "S",
+      2,
+      "Seguir exatamente a mesma rotina sem supervisão = constância/previsibilidade, S textual."
+    ],
+    "S31-A": [
+      "C",
+      2,
+      "Revisão completa antes de encerrar = precisão/qualidade, C."
+    ],
+    "S32-A": [
+      "D",
+      2,
+      "Assumir na hora mesmo desconfortável, na frente do time = enfrentamento direto, D."
+    ],
+    "S32-D": [
+      "S",
+      1,
+      "Agradecer por apontarem e corrigir depois = resiliência relacional/construção de confiança, S."
+    ],
+    "S33-A": [
+      "C",
+      2,
+      "Estruturalmente análoga a S07-A (já C): comunicar atraso com nova estimativa é precisão/estrutura, não persuasão. 'Todos os afetados' não é motivo suficiente para dimensão diferente do par análogo."
+    ],
+    "S34-D": [
+      "C",
+      2,
+      "Entender por que não funciona antes de mudar = análise antes da ação, C."
+    ],
+    "S35-A": [
+      "D",
+      3,
+      "Intervir na hora propondo decisão = enfrentamento direto de conflito, D forte."
+    ],
+    "S35-C": [
+      "I",
+      2,
+      "Pedir que cada um explique antes de decidir juntos é facilitação/mobilização de diálogo — mais I (mobilização de pessoas, interação) do que S (colaboração passiva/paciência)."
+    ],
+    "S36-A": [
+      "D",
+      2,
+      "Decidir e aproveitar sozinho = autonomia/decisão, D."
+    ],
+    "S37-A": [
+      "S",
+      2,
+      "Ouvir com calma e perguntar o que esperava diferente = paciência/receptividade, S."
+    ],
+    "S38-A": [
+      "D",
+      2,
+      "Começar a estudar por conta própria sem ninguém pedir = iniciativa/autonomia, D."
+    ],
+    "S39-A": [
+      "S",
+      2,
+      "Mesmo padrão de S13-A (já reclassificado I->S nesta auditoria): oferecer ajuda espontânea é suporte/colaboração (S), não persuasão/mobilização (I). Mantido como I seria inconsistente com o critério aplicado a S13-A."
+    ],
+    "S40-A": [
+      "C",
+      2,
+      "Estruturar o tempo com metas claras = organização/estrutura, C."
+    ]
+  },
+  "new_dual": {
+    "S36-D": [
+      [
+        "D",
+        1
+      ],
+      [
+        "C",
+        1
+      ]
+    ]
+  }
+}

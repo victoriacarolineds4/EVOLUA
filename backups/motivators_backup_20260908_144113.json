@@ -1,0 +1,8 @@
+[{"id":"70000000-0000-0000-0000-000000000006","code":"APR","name":"Aprendizado","description":"É movido por aprender coisas novas e dominar competências.","active":true,"created_at":"2026-07-23T22:48:48.452102+00:00"}, 
+ {"id":"70000000-0000-0000-0000-000000000005","code":"AUT","name":"Autonomia","description":"É movido por liberdade para decidir e trabalhar do seu jeito.","active":true,"created_at":"2026-07-23T22:48:48.452102+00:00"}, 
+ {"id":"70000000-0000-0000-0000-000000000002","code":"CRE","name":"Crescimento","description":"É movido por evoluir, assumir mais e progredir na carreira.","active":true,"created_at":"2026-07-23T22:48:48.452102+00:00"}, 
+ {"id":"70000000-0000-0000-0000-000000000008","code":"DES","name":"Desafios","description":"É movido por metas difíceis e problemas complexos para resolver.","active":true,"created_at":"2026-07-23T22:48:48.452102+00:00"}, 
+ {"id":"70000000-0000-0000-0000-000000000004","code":"FIN","name":"Recompensa Financeira","description":"É movido por ganho financeiro e retorno material.","active":true,"created_at":"2026-07-23T22:48:48.452102+00:00"}, 
+ {"id":"70000000-0000-0000-0000-000000000003","code":"PRO","name":"Propósito","description":"É movido por contribuir para algo maior e com significado.","active":true,"created_at":"2026-07-23T22:48:48.452102+00:00"}, 
+ {"id":"70000000-0000-0000-0000-000000000001","code":"REC","name":"Reconhecimento","description":"É movido por ser visto, valorizado e reconhecido pelo que entrega.","active":true,"created_at":"2026-07-23T22:48:48.452102+00:00"}, 
+ {"id":"70000000-0000-0000-0000-000000000007","code":"SEG","name":"Segurança","description":"É movido por estabilidade, previsibilidade e proteção.","active":true,"created_at":"2026-07-23T22:48:48.452102+00:00"}]
