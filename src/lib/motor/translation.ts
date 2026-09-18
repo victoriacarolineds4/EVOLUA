@@ -161,5 +161,5 @@ export const PROFILE_LABEL: Record<string, string> = {
   D: "Perfil Dominante",
   I: "Perfil Influente",
   S: "Perfil Estável",
-  C: "Perfil Cauteloso",
+  C: "Perfil Conforme",
 };

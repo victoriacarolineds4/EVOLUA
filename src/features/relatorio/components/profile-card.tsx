@@ -10,7 +10,7 @@ const PROFILE_IMAGE: Record<string, { src: string; alt: string }> = {
   D: { src: "/images/perfis/realizador.png", alt: "Ilustração do perfil Dominante" },
   I: { src: "/images/perfis/comunicador.png", alt: "Ilustração do perfil Influente" },
   S: { src: "/images/perfis/colaborativo.png", alt: "Ilustração do perfil Estável" },
-  C: { src: "/images/perfis/analitico.png", alt: "Ilustração do perfil Cauteloso" },
+  C: { src: "/images/perfis/analitico.png", alt: "Ilustração do perfil Conforme" },
 };
 
 interface ProfileCardProps {
