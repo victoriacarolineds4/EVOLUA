@@ -158,8 +158,8 @@ export const PILLAR_ATTENTION: Record<number, string> = {
 
 /** Rótulos de perfil por DISC predominante (nome amigável do perfil). */
 export const PROFILE_LABEL: Record<string, string> = {
-  D: "Perfil Realizador",
-  I: "Perfil Comunicador",
-  S: "Perfil Colaborativo",
-  C: "Perfil Analítico",
+  D: "Perfil Dominante",
+  I: "Perfil Influente",
+  S: "Perfil Estável",
+  C: "Perfil Cauteloso",
 };

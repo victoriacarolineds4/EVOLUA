@@ -7,10 +7,10 @@ import Image from "next/image";
  * não é uma segunda identificação de perfil, só a camada visual).
  */
 const PROFILE_IMAGE: Record<string, { src: string; alt: string }> = {
-  D: { src: "/images/perfis/realizador.png", alt: "Ilustração do perfil Realizador" },
-  I: { src: "/images/perfis/comunicador.png", alt: "Ilustração do perfil Comunicador" },
-  S: { src: "/images/perfis/colaborativo.png", alt: "Ilustração do perfil Colaborativo" },
-  C: { src: "/images/perfis/analitico.png", alt: "Ilustração do perfil Analítico" },
+  D: { src: "/images/perfis/realizador.png", alt: "Ilustração do perfil Dominante" },
+  I: { src: "/images/perfis/comunicador.png", alt: "Ilustração do perfil Influente" },
+  S: { src: "/images/perfis/colaborativo.png", alt: "Ilustração do perfil Estável" },
+  C: { src: "/images/perfis/analitico.png", alt: "Ilustração do perfil Cauteloso" },
 };
 
 interface ProfileCardProps {
