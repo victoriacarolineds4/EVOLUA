@@ -1,5 +1,14 @@
 # EVOLUA — Auditoria de Linguagem do Questionário (aplicado em produção)
 
+> ## ⚠️ SUPERSEDIDO EM 08/09/2026 — não usar para revisão
+>
+> As 28 situações simplificadas neste documento pertencem à taxonomia de pilares anterior ("Autogestão...
+> Desenvolvimento Contínuo"), substituída pela taxonomia oficial (ver `REALINHAMENTO_METODOLOGIA_OFICIAL.md`
+> e `INDICADORES_E_MAPEAMENTO_NOVO.md`). As situações e alternativas aqui simplificadas serão substituídas
+> por conteúdo novo, escrito para as 28 situações oficiais. Este documento fica mantido como registro
+> histórico da rodada de simplificação de linguagem já aplicada em produção — **não é mais a base vigente
+> para revisão de conteúdo.**
+>
 > **Este documento é para leitura humana da Victoria** — mesmo padrão do `MAPEAMENTO_REVISAO.md`.
 > Fonte: estado do banco de dados no momento da auditoria (lido via API em tempo real, não o arquivo de
 > seed estático — o seed estático `002_official_methodology.sql` ficou desatualizado após esta aplicação;

@@ -81,6 +81,22 @@ export const MOTIVATOR_GUIDANCE: Record<string, MotivatorGuidance> = {
     motivar: "Dê metas difíceis e problemas complexos para resolver — é o que gera energia.",
     reconhecer: "Reconheça propondo o próximo desafio maior.",
   },
+  DEV: {
+    motivar: "Ofereça um caminho claro de evolução de competências, não só tarefas soltas.",
+    reconhecer: "Reconheça mostrando o quanto a pessoa evoluiu desde o início.",
+  },
+  CNF: {
+    motivar: "Construa um ambiente onde a pessoa possa contar com quem está ao redor.",
+    reconhecer: "Reconheça reforçando que pode confiar no time e na liderança.",
+  },
+  TQV: {
+    motivar: "Respeite o tempo da pessoa fora do trabalho; evite sobrecarregar sem necessidade.",
+    reconhecer: "Reconheça com flexibilidade de horário ou folga, não só com elogio.",
+  },
+  OUT: {
+    motivar: "Pergunte diretamente o que faz sentido para essa pessoa — não se encaixa nas categorias padrão.",
+    reconhecer: "Reconheça do jeito que a própria pessoa já sinalizou preferir.",
+  },
 };
 
 export interface StyleGuidance {

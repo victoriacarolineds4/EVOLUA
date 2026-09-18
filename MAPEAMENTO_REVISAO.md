@@ -1,5 +1,13 @@
 # EVOLUA — Mapeamento Oficial das 112 Alternativas (RASCUNHO para revisão)
 
+> ## ⚠️ SUPERSEDIDO EM 08/09/2026 — não usar para revisão
+>
+> As 28 situações e os 7 pilares em que este documento se baseia foram substituídos pela taxonomia oficial
+> (ver `REALINHAMENTO_METODOLOGIA_OFICIAL.md`). O mapeamento atual é `INDICADORES_E_MAPEAMENTO_NOVO.md` —
+> 35 novos indicadores + as 112 alternativas reescritas para as situações oficiais. Este documento fica
+> mantido apenas como registro histórico do que foi pensado sob a taxonomia anterior ("Autogestão...
+> Desenvolvimento Contínuo") — **não reflete mais a metodologia vigente e não deve ser revisado.**
+>
 > **Este documento é para leitura humana da Victoria** — revisão do mapeamento alternativa → atributos.
 > Não é o seed de banco (esse é `supabase/seeds/005_official_mapping.sql`).
 >
