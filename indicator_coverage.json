@@ -73,13 +73,13 @@
     "code": "I06",
     "name": "Assunção de Erros",
     "pillar": 2,
-    "situations": 2,
-    "alternatives": 5,
-    "maxEvidence": 11,
+    "situations": 3,
+    "alternatives": 9,
+    "maxEvidence": 18,
     "strengthDist": {
-      "1": 1,
-      "2": 2,
-      "3": 2
+      "1": 3,
+      "2": 3,
+      "3": 3
     },
     "singleAltDependency": false
   },
@@ -241,13 +241,13 @@
     "code": "I18",
     "name": "Mediação de Conflitos",
     "pillar": 4,
-    "situations": 2,
-    "alternatives": 8,
-    "maxEvidence": 16,
+    "situations": 3,
+    "alternatives": 12,
+    "maxEvidence": 23,
     "strengthDist": {
-      "1": 3,
-      "2": 2,
-      "3": 3
+      "1": 5,
+      "2": 3,
+      "3": 4
     },
     "singleAltDependency": false
   },

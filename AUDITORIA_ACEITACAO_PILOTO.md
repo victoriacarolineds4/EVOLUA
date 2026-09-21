@@ -209,23 +209,25 @@ A única inconsistência real encontrada foi a do §4.1 (Motivador ignorando `is
 
 ## 14. VEREDITO TÉCNICO
 
-> **B) ESTÁ PRONTO PARA PILOTO CONTROLADO, COM RESSALVAS**
+> **B) ESTÁ PRONTO PARA PILOTO CONTROLADO, COM RESSALVAS** *(na auditoria original — ver §17 para o estado depois das correções)*
 
 Justificativa: a arquitetura do motor é sólida — determinístico, sem efeito cascata indevido, sem quebra em nenhum dos 12 cenários testados, e o princípio de "nunca afirmar o que não pode afirmar" está corretamente implementado em 3 das 4 dimensões complementares. As ressalvas encontradas são reais e específicas (não genéricas), mas nenhuma delas causa erro, crash, ou dado corrompido — o padrão é "o sistema mostra menos confiança do que se gostaria", não "o sistema mostra confiança errada", **com uma única exceção comprovada: o bug do Motivador (§4.1)**, que é precisamente o tipo de "falsa certeza" que o resto do produto foi desenhado para evitar.
+
+**Atualização pós-§17: itens 1, 2 e 3 abaixo foram todos corrigidos e aplicados em produção.** Dos 35 indicadores, todos têm agora ≥3 situações de evidência (antes: 17); o bug do Motivador está corrigido; C (DISC) sai confiante mesmo na persona mais pura. O veredito **B** se mantém — as ressalvas restantes (§17: I-puro no limite da proximidade num cenário sintético extremo; item 3 abaixo sobre comunicar o teto de confiança; E2E via UI real não executado) são de natureza diferente das originais: nenhuma é mais uma falha comprovada, são pontos de atenção/comunicação.
 
 ---
 
 ## 15. O QUE PRECISA SER FEITO ANTES DO PILOTO
 
-1. **Corrigir o bug do Motivador (§4.1)** — troca de 2 linhas em `report-builder.ts`, baixo risco, alta prioridade: é a única falha que pode apresentar um empate como fato para uma pessoa real.
-2. **Decidir o destino do indicador I20** (Construção de Confiança, zero cobertura) — ou recebe vínculo real em pelo menos 3 situações, ou é formalmente descontinuado antes do piloto. Hoje ele só ocupa espaço sem nunca gerar valor.
-3. **Comunicar internamente (à própria Victoria e a quem for interpretar os relatórios do piloto) que ~metade dos indicadores e o perfil C do DISC vão aparecer com confiança baixa/moderada com frequência** — não é erro, é o teto atual do instrumento; melhor saber disso antes de um cliente perguntar por que o relatório "parece incompleto".
-4. Se quiser rastreabilidade completa antes do piloto: autorizar o teste E2E real (§13) e/ou consolidar `supabase/migrations/` (§1/§4.5).
+1. ~~Corrigir o bug do Motivador (§4.1)~~ — **feito, ver §17.**
+2. ~~Decidir o destino do indicador I20~~ — **feito: recebeu vínculo real (3 situações) via migration 021, ver §17.**
+3. **Comunicar internamente (à própria Victoria e a quem for interpretar os relatórios do piloto) que a maioria dos indicadores vai aparecer com confiança "moderada" (não "alta") com frequência** — mesmo depois das correções, ter exatamente 3 situações (o piso) significa que qualquer resposta atípica ali já derruba a confiança; é o teto realista do instrumento atual, não um erro. Ainda vale comunicar isso antes de um cliente perguntar por que o relatório "parece incompleto".
+4. Se quiser rastreabilidade completa antes do piloto: autorizar o teste E2E real (§13) e/ou consolidar `supabase/migrations/` (§1/§4.5) — nenhum dos dois foi feito ainda.
 
 ## 16. O QUE NÃO PRECISA SER ALTERADO
 
 - Motor de cálculo (`engine.ts`) — determinístico, sem sensibilidade excessiva, sem efeito cascata, resistente a inversão, resistente (no teste tentado) a resposta estratégica.
-- Estrutura de dados — 40/160/35/7, zero duplicatas, zero órfãos, zero `evidence_strength` inválido nas 5 tabelas de vínculo.
+- Estrutura de dados — agora 42/168/35/7 (era 40/160/35/7 na auditoria original), zero duplicatas, zero órfãos, zero `evidence_strength` inválido nas 5 tabelas de vínculo, reconfirmado depois de cada correção.
 - Lógica de confiança/proximidade em DISC, Tipo e Estilo — corretamente hedgeada em todos os cenários testados.
 - Rastreabilidade — toda afirmação do relatório tem origem verificável até a linha do banco; nenhuma "alucinação" possível, já que a camada de tradução é lookup determinístico por código, nunca geração livre.
 - Isolamento multitenancy — sem mudança desde o teste documentado no HANDOFF; nenhum motivo para reabrir agora.
@@ -273,4 +275,14 @@ O teste de inversão (D↔S, I↔C) e o de determinismo (10 execuções idêntic
 - `supabase/migrations/020_disc_aumenta_teto_c_e_i.sql` — 67→73 vínculos DISC (D20/I12/S21/C20)
 - `supabase/migrations/021_indicadores_fecha_cobertura_fraca.sql` — 192→213 vínculos indicador
 
-Rodadas no SQL Editor do Supabase em 21/09/2026 (021/09), sem erro nas guardas de segurança. Conferido ao vivo no relatório do Allan Pires: Motivador e Tipo continuam confiantes (sem "tendência"), DISC continua "Conforme — tendência" (esperado — ele é um caso genuinamente misto D/C, não resolvido pelo aumento de teto, como já discutido na investigação anterior); score geral e pontos de atenção mudaram (66→60, Aprendizagem e Mudança→Responsabilidade) como consequência natural de mais evidência de indicador entrando no cálculo pela migration 021 — não é regressão, é o sistema recalculando com mais dado real disponível.
+Rodadas no SQL Editor do Supabase em 21/09/2026, sem erro nas guardas de segurança. Conferido ao vivo no relatório do Allan Pires: Motivador e Tipo continuam confiantes (sem "tendência"), DISC continua "Conforme — tendência" (esperado — ele é um caso genuinamente misto D/C, não resolvido pelo aumento de teto, como já discutido na investigação anterior); score geral e pontos de atenção mudaram (66→60, Aprendizagem e Mudança→Responsabilidade) como consequência natural de mais evidência de indicador entrando no cálculo pela migration 021 — não é regressão, é o sistema recalculando com mais dado real disponível.
+
+### Item 2 (continuação) — I06 e I18 fechados com conteúdo novo, EVOLUA 40 → EVOLUA 42
+
+Os 2 indicadores que a migration 021 não conseguiu fechar sem forçar (§4.2, §15 item 1) foram resolvidos com 2 situações novas, desenhadas com a Victoria e aprovadas por ela antes de qualquer SQL: **S41** (erro que só a própria pessoa percebe, ninguém mais notou — ângulo diferente de S6/S32) fecha I06; **S42** (conflito crônico/evitado entre dois colegas, não uma discussão aguda — ângulo diferente de S15/S35) fecha I18. `supabase/migrations/022_expansao_40_para_42_situacoes.sql`, aplicada em produção.
+
+Verificado com o harness antes de aplicar: 42 situações, 168 alternativas, zero duplicata/órfão/`attribute_id` inválido; **I06 e I18 agora com 3 situações distintas cada** (antes: 2) — os 35 indicadores do instrumento têm, agora, todos pelo menos 3 situações de evidência possível. Inversão e determinismo continuam passando limpo.
+
+**Nada no código dependia do número 40** (contagem de perguntas, validação de conclusão via `update_response_progress`, e barra de progresso já eram `count(*) from questions where active=true`, dinâmico) — a expansão para 42 não exigiu nenhuma mudança de código, só de conteúdo.
+
+**Efeito colateral real, observado ao vivo:** o score do Allan caiu mais um pouco (60→58) depois desta migration especificamente. Motivo: ele completou o teste em 13/09, antes de S41/S42 existirem — nunca respondeu essas 2 situações. O "teto" (máximo atingível) de I06/I18 agora inclui S41/S42 no cálculo dele mesmo assim, porque o motor usa a metodologia atual inteira como denominador, não só as situações que aquela pessoa especificamente respondeu — então o score desses 2 indicadores para ele fica proporcionalmente mais baixo, não por comportamento pior, mas por ter respondido a uma versão mais curta do instrumento. **Isso não é um bug introduzido agora** — é a mesma mecânica que já valia quando S29-S40 foram adicionadas em cima de respostas da era de 28 situações; só ficou visível de novo porque testei no mesmo caso real. Não é uma mudança de comportamento a corrigir, mas uma característica que vale a Victoria conhecer: **toda vez que o questionário cresce, respostas antigas ficam com scores levemente mais conservadores nos indicadores tocados pelo conteúdo novo** — não seria maquinário incorreto, o `evidenceCount`/confiança continua honesto (baseado só no que a pessoa de fato respondeu), é só o score numérico do indicador que dilui um pouco.
