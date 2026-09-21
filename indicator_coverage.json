@@ -1,0 +1,492 @@
+[
+  {
+    "code": "I01",
+    "name": "Gestão do Tempo",
+    "pillar": 1,
+    "situations": 3,
+    "alternatives": 6,
+    "maxEvidence": 11,
+    "strengthDist": {
+      "1": 3,
+      "2": 1,
+      "3": 2
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I02",
+    "name": "Priorização",
+    "pillar": 1,
+    "situations": 4,
+    "alternatives": 5,
+    "maxEvidence": 8,
+    "strengthDist": {
+      "1": 3,
+      "2": 1,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I03",
+    "name": "Planejamento",
+    "pillar": 1,
+    "situations": 4,
+    "alternatives": 4,
+    "maxEvidence": 7,
+    "strengthDist": {
+      "1": 1,
+      "2": 3,
+      "3": 0
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I04",
+    "name": "Consistência na Rotina",
+    "pillar": 1,
+    "situations": 3,
+    "alternatives": 7,
+    "maxEvidence": 12,
+    "strengthDist": {
+      "1": 3,
+      "2": 3,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I05",
+    "name": "Fechamento de Ciclos",
+    "pillar": 1,
+    "situations": 3,
+    "alternatives": 9,
+    "maxEvidence": 16,
+    "strengthDist": {
+      "1": 4,
+      "2": 3,
+      "3": 2
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I06",
+    "name": "Assunção de Erros",
+    "pillar": 2,
+    "situations": 2,
+    "alternatives": 5,
+    "maxEvidence": 11,
+    "strengthDist": {
+      "1": 1,
+      "2": 2,
+      "3": 2
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I07",
+    "name": "Proatividade diante de Falhas",
+    "pillar": 2,
+    "situations": 4,
+    "alternatives": 6,
+    "maxEvidence": 9,
+    "strengthDist": {
+      "1": 3,
+      "2": 3,
+      "3": 0
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I08",
+    "name": "Transparência sobre Atrasos",
+    "pillar": 2,
+    "situations": 3,
+    "alternatives": 8,
+    "maxEvidence": 15,
+    "strengthDist": {
+      "1": 3,
+      "2": 3,
+      "3": 2
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I09",
+    "name": "Aceitação de Responsabilidade",
+    "pillar": 2,
+    "situations": 3,
+    "alternatives": 6,
+    "maxEvidence": 11,
+    "strengthDist": {
+      "1": 2,
+      "2": 3,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I10",
+    "name": "Cuidado com Impacto no Outro",
+    "pillar": 2,
+    "situations": 3,
+    "alternatives": 3,
+    "maxEvidence": 6,
+    "strengthDist": {
+      "1": 1,
+      "2": 1,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I11",
+    "name": "Abertura a Mudança",
+    "pillar": 3,
+    "situations": 3,
+    "alternatives": 4,
+    "maxEvidence": 7,
+    "strengthDist": {
+      "1": 2,
+      "2": 1,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I12",
+    "name": "Disposição para o Novo",
+    "pillar": 3,
+    "situations": 4,
+    "alternatives": 7,
+    "maxEvidence": 11,
+    "strengthDist": {
+      "1": 4,
+      "2": 2,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I13",
+    "name": "Receptividade a Feedback",
+    "pillar": 3,
+    "situations": 4,
+    "alternatives": 7,
+    "maxEvidence": 13,
+    "strengthDist": {
+      "1": 2,
+      "2": 4,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I14",
+    "name": "Autodesenvolvimento",
+    "pillar": 3,
+    "situations": 4,
+    "alternatives": 5,
+    "maxEvidence": 9,
+    "strengthDist": {
+      "1": 2,
+      "2": 2,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I15",
+    "name": "Flexibilidade Cognitiva",
+    "pillar": 3,
+    "situations": 3,
+    "alternatives": 6,
+    "maxEvidence": 12,
+    "strengthDist": {
+      "1": 1,
+      "2": 4,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I16",
+    "name": "Disposição para Ajudar",
+    "pillar": 4,
+    "situations": 3,
+    "alternatives": 6,
+    "maxEvidence": 9,
+    "strengthDist": {
+      "1": 4,
+      "2": 1,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I17",
+    "name": "Acolhimento",
+    "pillar": 4,
+    "situations": 3,
+    "alternatives": 6,
+    "maxEvidence": 10,
+    "strengthDist": {
+      "1": 3,
+      "2": 2,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I18",
+    "name": "Mediação de Conflitos",
+    "pillar": 4,
+    "situations": 2,
+    "alternatives": 8,
+    "maxEvidence": 16,
+    "strengthDist": {
+      "1": 3,
+      "2": 2,
+      "3": 3
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I19",
+    "name": "Tolerância à Diferença",
+    "pillar": 4,
+    "situations": 3,
+    "alternatives": 6,
+    "maxEvidence": 10,
+    "strengthDist": {
+      "1": 3,
+      "2": 2,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I20",
+    "name": "Construção de Confiança",
+    "pillar": 4,
+    "situations": 3,
+    "alternatives": 3,
+    "maxEvidence": 3,
+    "strengthDist": {
+      "1": 3,
+      "2": 0,
+      "3": 0
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I21",
+    "name": "Iniciativa de Comunicação",
+    "pillar": 5,
+    "situations": 3,
+    "alternatives": 6,
+    "maxEvidence": 9,
+    "strengthDist": {
+      "1": 4,
+      "2": 1,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I22",
+    "name": "Transparência com Liderança",
+    "pillar": 5,
+    "situations": 3,
+    "alternatives": 6,
+    "maxEvidence": 11,
+    "strengthDist": {
+      "1": 2,
+      "2": 3,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I23",
+    "name": "Pedido de Ajuda",
+    "pillar": 5,
+    "situations": 6,
+    "alternatives": 9,
+    "maxEvidence": 13,
+    "strengthDist": {
+      "1": 6,
+      "2": 2,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I24",
+    "name": "Clareza na Orientação",
+    "pillar": 5,
+    "situations": 3,
+    "alternatives": 4,
+    "maxEvidence": 8,
+    "strengthDist": {
+      "1": 2,
+      "2": 0,
+      "3": 2
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I25",
+    "name": "Adaptação da Mensagem",
+    "pillar": 5,
+    "situations": 3,
+    "alternatives": 4,
+    "maxEvidence": 9,
+    "strengthDist": {
+      "1": 1,
+      "2": 1,
+      "3": 2
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I26",
+    "name": "Autonomia sob Pressão",
+    "pillar": 6,
+    "situations": 3,
+    "alternatives": 8,
+    "maxEvidence": 15,
+    "strengthDist": {
+      "1": 3,
+      "2": 3,
+      "3": 2
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I27",
+    "name": "Gestão de Múltiplas Demandas",
+    "pillar": 6,
+    "situations": 3,
+    "alternatives": 6,
+    "maxEvidence": 10,
+    "strengthDist": {
+      "1": 3,
+      "2": 2,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I28",
+    "name": "Lida com Insatisfação",
+    "pillar": 6,
+    "situations": 3,
+    "alternatives": 8,
+    "maxEvidence": 16,
+    "strengthDist": {
+      "1": 2,
+      "2": 4,
+      "3": 2
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I29",
+    "name": "Decisão com Informação Limitada",
+    "pillar": 6,
+    "situations": 3,
+    "alternatives": 6,
+    "maxEvidence": 11,
+    "strengthDist": {
+      "1": 2,
+      "2": 3,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I30",
+    "name": "Estabilidade sob Pressão",
+    "pillar": 6,
+    "situations": 3,
+    "alternatives": 3,
+    "maxEvidence": 5,
+    "strengthDist": {
+      "1": 1,
+      "2": 2,
+      "3": 0
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I31",
+    "name": "Busca por Crescimento",
+    "pillar": 7,
+    "situations": 3,
+    "alternatives": 9,
+    "maxEvidence": 16,
+    "strengthDist": {
+      "1": 4,
+      "2": 3,
+      "3": 2
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I32",
+    "name": "Disposição para Ensinar",
+    "pillar": 7,
+    "situations": 3,
+    "alternatives": 9,
+    "maxEvidence": 18,
+    "strengthDist": {
+      "1": 2,
+      "2": 5,
+      "3": 2
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I33",
+    "name": "Integridade",
+    "pillar": 7,
+    "situations": 3,
+    "alternatives": 6,
+    "maxEvidence": 10,
+    "strengthDist": {
+      "1": 3,
+      "2": 2,
+      "3": 1
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I34",
+    "name": "Uso da Autonomia",
+    "pillar": 7,
+    "situations": 3,
+    "alternatives": 9,
+    "maxEvidence": 19,
+    "strengthDist": {
+      "1": 2,
+      "2": 4,
+      "3": 3
+    },
+    "singleAltDependency": false
+  },
+  {
+    "code": "I35",
+    "name": "Compromisso com Evolução",
+    "pillar": 7,
+    "situations": 3,
+    "alternatives": 3,
+    "maxEvidence": 4,
+    "strengthDist": {
+      "1": 2,
+      "2": 1,
+      "3": 0
+    },
+    "singleAltDependency": false
+  }
+]

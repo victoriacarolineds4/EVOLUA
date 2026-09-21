@@ -1,0 +1,326 @@
+{
+  "01_D_forte": {
+    "answeredCount": 40,
+    "overall": 80,
+    "discTop": "D",
+    "discShares": [
+      "D:44%(19ev)",
+      "S:22%(7ev)",
+      "I:20%(4ev)",
+      "C:14%(4ev)"
+    ],
+    "discClose": false,
+    "tipoTop": "IDE",
+    "motTop": "AUT",
+    "estTop": "EXE",
+    "pillarScores": [
+      "P1:85(baixa)",
+      "P2:84(moderada)",
+      "P3:71(baixa)",
+      "P4:74(baixa)",
+      "P5:57(baixa)",
+      "P6:95(moderada)",
+      "P7:95(moderada)"
+    ],
+    "reportLabel": "Perfil Dominante",
+    "reportLabelConfident": true,
+    "reportSummary": "Teste tem um perfil direto, decidido e focado em resultado. Tende a pensar em propósito, valores e no potencial das pessoas e se move principalmente por autonomia. Trabalha melhor quando coloca em prática rapidamente, com foco em fazer acontecer."
+  },
+  "02_I_forte": {
+    "answeredCount": 40,
+    "overall": 82,
+    "discTop": "I",
+    "discShares": [
+      "I:38%(9ev)",
+      "D:26%(12ev)",
+      "S:20%(7ev)",
+      "C:16%(5ev)"
+    ],
+    "discClose": false,
+    "tipoTop": "IDE",
+    "motTop": "AUT",
+    "estTop": "EXE",
+    "pillarScores": [
+      "P1:93(baixa)",
+      "P2:92(moderada)",
+      "P3:67(baixa)",
+      "P4:79(baixa)",
+      "P5:68(baixa)",
+      "P6:89(baixa)",
+      "P7:83(moderada)"
+    ],
+    "reportLabel": "Perfil Influente",
+    "reportLabelConfident": true,
+    "reportSummary": "Teste tem um perfil comunicativo, entusiasta e movido por pessoas. Tende a pensar em propósito, valores e no potencial das pessoas e se move principalmente por autonomia. Tende a trabalhar melhor quando coloca em prática rapidamente, com foco em fazer acontecer, a confirmar com mais observação."
+  },
+  "03_S_forte": {
+    "answeredCount": 40,
+    "overall": 71,
+    "discTop": "S",
+    "discShares": [
+      "S:44%(18ev)",
+      "D:24%(9ev)",
+      "C:19%(5ev)",
+      "I:13%(2ev)"
+    ],
+    "discClose": false,
+    "tipoTop": "IDE",
+    "motTop": null,
+    "estTop": "EXE",
+    "pillarScores": [
+      "P1:84(baixa)",
+      "P2:73(baixa)",
+      "P3:64(baixa)",
+      "P4:57(baixa)",
+      "P5:57(baixa)",
+      "P6:74(baixa)",
+      "P7:86(baixa)"
+    ],
+    "reportLabel": "Perfil Estável",
+    "reportLabelConfident": true,
+    "reportSummary": "Teste tem um perfil paciente, colaborativo e que evita conflito. Pensa em propósito, valores e no potencial das pessoas e pode se mover por autonomia, ainda com poucas evidências. Tende a trabalhar melhor quando coloca em prática rapidamente, com foco em fazer acontecer, a confirmar com mais observação."
+  },
+  "04_C_forte": {
+    "answeredCount": 40,
+    "overall": 72,
+    "discTop": "C",
+    "discShares": [
+      "C:37%(14ev)",
+      "D:27%(12ev)",
+      "I:20%(4ev)",
+      "S:16%(6ev)"
+    ],
+    "discClose": true,
+    "tipoTop": "IDE",
+    "motTop": null,
+    "estTop": "PLA",
+    "pillarScores": [
+      "P1:74(baixa)",
+      "P2:87(moderada)",
+      "P3:46(baixa)",
+      "P4:79(baixa)",
+      "P5:63(baixa)",
+      "P6:68(baixa)",
+      "P7:87(moderada)"
+    ],
+    "reportLabel": "Perfil Conforme",
+    "reportLabelConfident": false,
+    "reportSummary": "Teste aparenta ter um perfil analítico, preciso e orientado a critérios, mas o resultado está próximo de outro perfil (Dominância) — ainda não dá para afirmar uma tendência clara. Pensa em propósito, valores e no potencial das pessoas e pode se mover por aprendizado, ainda com poucas evidências. Tende a trabalhar melhor quando organiza, estrutura e antecipa antes de agir, a confirmar com mais observação."
+  },
+  "05_D+I": {
+    "answeredCount": 40,
+    "overall": 63,
+    "discTop": "I",
+    "discShares": [
+      "I:44%(7ev)",
+      "D:36%(12ev)",
+      "C:17%(4ev)",
+      "S:3%(1ev)"
+    ],
+    "discClose": true,
+    "tipoTop": "ART",
+    "motTop": "DES",
+    "estTop": "EXE",
+    "pillarScores": [
+      "P1:44(baixa)",
+      "P2:66(moderada)",
+      "P3:65(baixa)",
+      "P4:69(baixa)",
+      "P5:62(baixa)",
+      "P6:62(baixa)",
+      "P7:74(moderada)"
+    ],
+    "reportLabel": "Perfil Influente",
+    "reportLabelConfident": false,
+    "reportSummary": "Teste aparenta ter um perfil comunicativo, entusiasta e movido por pessoas, mas o resultado está próximo de outro perfil (Dominância) — ainda não dá para afirmar uma tendência clara. Pensa no concreto, no prático e no presente e se move principalmente por desafios. Tende a trabalhar melhor quando coloca em prática rapidamente, com foco em fazer acontecer, a confirmar com mais observação."
+  },
+  "06_I+S": {
+    "answeredCount": 40,
+    "overall": 65,
+    "discTop": "S",
+    "discShares": [
+      "S:33%(10ev)",
+      "D:25%(10ev)",
+      "I:23%(4ev)",
+      "C:19%(5ev)"
+    ],
+    "discClose": true,
+    "tipoTop": "ART",
+    "motTop": "DES",
+    "estTop": "PLA",
+    "pillarScores": [
+      "P1:54(baixa)",
+      "P2:62(baixa)",
+      "P3:67(baixa)",
+      "P4:66(baixa)",
+      "P5:51(baixa)",
+      "P6:73(baixa)",
+      "P7:82(moderada)"
+    ],
+    "reportLabel": "Perfil Estável",
+    "reportLabelConfident": false,
+    "reportSummary": "Teste aparenta ter um perfil paciente, colaborativo e que evita conflito, mas o resultado está próximo de outro perfil (Dominância) — ainda não dá para afirmar uma tendência clara. Tende a pensar no concreto, no prático e no presente e se move principalmente por desafios. Trabalha melhor quando organiza, estrutura e antecipa antes de agir."
+  },
+  "07_S+C": {
+    "answeredCount": 40,
+    "overall": 54,
+    "discTop": "C",
+    "discShares": [
+      "C:48%(9ev)",
+      "S:30%(9ev)",
+      "D:22%(6ev)",
+      "I:0%(0ev)"
+    ],
+    "discClose": false,
+    "tipoTop": "GUA",
+    "motTop": "AUT",
+    "estTop": "PLA",
+    "pillarScores": [
+      "P1:63(baixa)",
+      "P2:55(baixa)",
+      "P3:46(baixa)",
+      "P4:30(baixa)",
+      "P5:47(baixa)",
+      "P6:62(baixa)",
+      "P7:73(moderada)"
+    ],
+    "reportLabel": "Perfil Conforme",
+    "reportLabelConfident": true,
+    "reportSummary": "Teste tem um perfil analítico, preciso e orientado a critérios. Pensa em ordem, responsabilidade e continuidade e se move principalmente por autonomia. Trabalha melhor quando organiza, estrutura e antecipa antes de agir."
+  },
+  "08_C+D": {
+    "answeredCount": 40,
+    "overall": 60,
+    "discTop": "D",
+    "discShares": [
+      "D:50%(15ev)",
+      "C:37%(9ev)",
+      "I:9%(1ev)",
+      "S:3%(1ev)"
+    ],
+    "discClose": false,
+    "tipoTop": "ART",
+    "motTop": null,
+    "estTop": "EXE",
+    "pillarScores": [
+      "P1:71(baixa)",
+      "P2:56(baixa)",
+      "P3:43(baixa)",
+      "P4:61(baixa)",
+      "P5:47(baixa)",
+      "P6:67(baixa)",
+      "P7:78(moderada)"
+    ],
+    "reportLabel": "Perfil Dominante",
+    "reportLabelConfident": true,
+    "reportSummary": "Teste tem um perfil direto, decidido e focado em resultado. Tende a pensar no concreto, no prático e no presente e pode se mover por crescimento, ainda com poucas evidências. Tende a trabalhar melhor quando coloca em prática rapidamente, com foco em fazer acontecer, a confirmar com mais observação."
+  },
+  "09_equilibrado": {
+    "answeredCount": 40,
+    "overall": 54,
+    "discTop": "C",
+    "discShares": [
+      "C:31%(6ev)",
+      "D:25%(7ev)",
+      "S:25%(7ev)",
+      "I:18%(3ev)"
+    ],
+    "discClose": true,
+    "tipoTop": "GUA",
+    "motTop": "CNF",
+    "estTop": "PLA",
+    "pillarScores": [
+      "P1:53(baixa)",
+      "P2:53(baixa)",
+      "P3:50(baixa)",
+      "P4:39(baixa)",
+      "P5:59(baixa)",
+      "P6:58(baixa)",
+      "P7:69(moderada)"
+    ],
+    "reportLabel": "Perfil Conforme",
+    "reportLabelConfident": false,
+    "reportSummary": "Teste aparenta ter um perfil analítico, preciso e orientado a critérios, mas o resultado está próximo de outro perfil (Dominância) — ainda não dá para afirmar uma tendência clara. Pensa em ordem, responsabilidade e continuidade e se move principalmente por confiança. Trabalha melhor quando organiza, estrutura e antecipa antes de agir."
+  },
+  "10_contraditoria": {
+    "answeredCount": 40,
+    "overall": 78,
+    "discTop": "D",
+    "discShares": [
+      "D:33%(15ev)",
+      "C:28%(10ev)",
+      "I:23%(5ev)",
+      "S:17%(6ev)"
+    ],
+    "discClose": true,
+    "tipoTop": "IDE",
+    "motTop": null,
+    "estTop": "EXE",
+    "pillarScores": [
+      "P1:74(baixa)",
+      "P2:87(moderada)",
+      "P3:71(baixa)",
+      "P4:79(baixa)",
+      "P5:68(baixa)",
+      "P6:73(baixa)",
+      "P7:91(moderada)"
+    ],
+    "reportLabel": "Perfil Dominante",
+    "reportLabelConfident": false,
+    "reportSummary": "Teste aparenta ter um perfil direto, decidido e focado em resultado, mas o resultado está próximo de outro perfil (Conformidade) — ainda não dá para afirmar uma tendência clara. Pensa em propósito, valores e no potencial das pessoas e pode se mover por desafios, ainda com poucas evidências. Tende a trabalhar melhor quando coloca em prática rapidamente, com foco em fazer acontecer, a confirmar com mais observação."
+  },
+  "11_baixa_evidencia": {
+    "answeredCount": 5,
+    "overall": 42,
+    "discTop": null,
+    "discShares": [
+      "D:53%(2ev)",
+      "C:47%(1ev)",
+      "I:0%(0ev)",
+      "S:0%(0ev)"
+    ],
+    "discClose": true,
+    "tipoTop": null,
+    "motTop": null,
+    "estTop": null,
+    "pillarScores": [
+      "P1:57(baixa)",
+      "P2:50(baixa)",
+      "P3:—(insuficiente)",
+      "P4:—(insuficiente)",
+      "P5:—(insuficiente)",
+      "P6:20(baixa)",
+      "P7:—(insuficiente)"
+    ],
+    "reportLabel": "Perfil Dominante",
+    "reportLabelConfident": false,
+    "reportSummary": "Teste aparenta ter um perfil direto, decidido e focado em resultado, mas o resultado está próximo de outro perfil (Conformidade) — ainda não dá para afirmar uma tendência clara. Tende a pensar em sistema, lógica e longo prazo e pode se mover por reconhecimento, ainda com poucas evidências. Tende a trabalhar melhor quando coloca em prática rapidamente, com foco em fazer acontecer, a confirmar com mais observação."
+  },
+  "12_aleatoria": {
+    "answeredCount": 40,
+    "overall": 46,
+    "discTop": "I",
+    "discShares": [
+      "I:40%(4ev)",
+      "S:23%(5ev)",
+      "C:22%(4ev)",
+      "D:15%(3ev)"
+    ],
+    "discClose": false,
+    "tipoTop": "IDE",
+    "motTop": "CNF",
+    "estTop": "COL",
+    "pillarScores": [
+      "P1:37(baixa)",
+      "P2:43(baixa)",
+      "P3:44(baixa)",
+      "P4:35(baixa)",
+      "P5:44(baixa)",
+      "P6:62(baixa)",
+      "P7:56(moderada)"
+    ],
+    "reportLabel": "Perfil Influente",
+    "reportLabelConfident": true,
+    "reportSummary": "Teste tem um perfil comunicativo, entusiasta e movido por pessoas. Pensa em propósito, valores e no potencial das pessoas e se move principalmente por confiança. Tende a trabalhar melhor quando constrói junto e articula pessoas, a confirmar com mais observação."
+  }
+}

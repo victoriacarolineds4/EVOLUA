@@ -99,7 +99,7 @@ export function buildReport(
       ? `Pensa ${tipoG?.pensa ?? "à sua maneira"}`
       : `Tende a pensar ${tipoG?.pensa ?? "à sua maneira"}`) +
     " e " +
-    (d.motivators.sufficient
+    (mot.confident
       ? `se move principalmente por ${mot.name.toLowerCase()}.`
       : `pode se mover por ${mot.name.toLowerCase()}, ainda com poucas evidências.`) +
     " " +
@@ -131,7 +131,7 @@ export function buildReport(
   const dimensions = [
     { key: "disc", label: "Como age", value: disc.name, doThis: discG?.liderar ?? "", confident: disc.confident },
     { key: "tipo", label: "Como pensa", value: tipo.name, doThis: tipoG?.comunicar ?? "", confident: tipo.confident },
-    { key: "motivador", label: "O que move", value: mot.name, doThis: MOTIVATOR_GUIDANCE[mot.code]?.motivar ?? "", confident: d.motivators.sufficient },
+    { key: "motivador", label: "O que move", value: mot.name, doThis: MOTIVATOR_GUIDANCE[mot.code]?.motivar ?? "", confident: mot.confident },
     { key: "estilo", label: "Como trabalha", value: est.name, doThis: estG?.delegar ?? "", confident: est.confident },
   ];
 
